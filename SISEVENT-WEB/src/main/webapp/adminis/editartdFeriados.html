@@ -1,0 +1,72 @@
+<div flex="100" layout="column" layout-align="start stretch" class="margenPersonsa" 
+data-ng-init="edittdFeriados()">
+
+<div layout="row" layout-aling="space-between start">
+     <div flex="auto" ng-if="nuevo">        
+        <p class="md-title">Nueva Días No Laborables</p>
+     </div>
+     <div flex="auto" ng-if="!nuevo">    
+        <p class="md-title">{{formatDate(tdFeriadosModelo.fechaFeriado)}}</p>
+     </div>
+     <div flex="auto" layout="row" layout-aling="end center" class="alingizquierda">
+     <md-button class="md-raised md-warn botontamanio" ng-click="cancelarTdFeriados()">
+       <md-icon md-font-set="material-icons">undo</md-icon> 
+       <span ng-if="nuevo">Cancelar</span>
+       <span ng-if="!nuevo">Salir</span>     
+     </md-button>
+     <md-button class="md-raised botontamanio" ng-click="salvarTdFeriados($event)" ng-if="tdFeriadosModelo.editopcion==1">
+       <md-icon md-font-set="material-icons">save</md-icon> 
+       <span >Grabar</span>       
+     </md-button>
+     </div>
+</div>
+
+<div>
+<md-toolbar class="md-primary tolbarconrario" >
+    <div class="md-toolbar-tools" md-colors="{color: 'background-200'}">
+      <h2>Datos del día no laborable</h2>
+    </div>
+</md-toolbar>
+ <md-content md-whiteframe="1" class="overflowEsconder">
+   
+<div layout="row" layout-aling="center start">
+         <md-input-container class="md-block input-container-margen" ng-if="tdFeriadosModelo.editopcion < 2">
+            <label>Fecha del feriado</label>
+                 <md-datepicker required ng-model="tdFeriadosModelo.fechaFeriado" 
+                     md-placeholder="Ingrese la fecha"
+                     input-aria-describedby="datepicker-description"
+                     input-aria-labelledby="datepicker-header ">
+                 </md-datepicker>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdFeriadosModelo.editopcion > 1">  
+            <div class="letraLabel">Fecha del feriado:</div>
+            <div class="letraTexto">{{formatDate(tdFeriadosModelo.fechaFeriado)}}</div>
+         </div>               
+  </div>
+   
+   <div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdFeriadosModelo.editopcion < 2">
+            <label>Feriado Por</label>
+            <input type="text" md-maxlength="255" required name="descricion" ng-model="tdFeriadosModelo.descricion">
+            <div ng-messages="tdFeriadosDlgForm.descricion.$error">
+            <div ng-message="tdFeriadosDlgForm.descricion.$error.required">Se requiere el Feriado Por.</div>
+            <div ng-message="tdFeriadosDlgForm.descricion.$error.md-maxlength">El Feriado Por tiene un maximo de 255 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdFeriadosModelo.editopcion > 1">  
+            <div class="letraLabel">Feriado Por:</div>
+            <div class="letraTexto">{{tdFeriadosModelo.descricion}}</div>
+         </div>			 
+ </div>
+ 
+</md-content>
+</div>
+<div>&nbsp;</div>
+
+</div> <!-- FIN -->
+
+<!-- DIALOGOS -->
+<!-- FIN DIALOGOS -->
+<!-- Footer -->
+<div ng-include="'paginas/pie.html'"></div>
+<!-- Fin Footer -->

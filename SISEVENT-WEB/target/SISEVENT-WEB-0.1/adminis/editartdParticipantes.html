@@ -1,0 +1,95 @@
+<div flex="100" layout="column" layout-align="start stretch" class="margenForm" 
+data-ng-init="edittdParticipantes()">
+
+<div layout="row" layout-aling="space-between start">
+     <div flex="auto" ng-if="nuevo">        
+        <p class="md-title">Nueva Participantes O Acompañantes Asigados A Los Eventos</p>
+     </div>
+     <div flex="auto" ng-if="!nuevo">        
+        <p class="md-title">{{tdParticipantesModelo.XXX}}</p>
+     </div>
+     <div flex="auto" layout="row" layout-aling="end center" class="alingizquierda">
+     <md-button class="md-raised md-warn botontamanio" ng-click="cancelarTdParticipantes()">
+       <md-icon md-font-set="material-icons">undo</md-icon> 
+       <span ng-if="nuevo">Cancelar</span>
+       <span ng-if="!nuevo">Salir</span>   
+     </md-button>
+     <md-button class="md-raised botontamanio" ng-click="salvarTdParticipantes($event)" ng-if="tdParticipantesModelo.editopcion==1">
+       <md-icon md-font-set="material-icons">save</md-icon> 
+       <span >Grabar</span>       
+     </md-button>
+     </div>
+</div>
+
+<div layout="column">
+<md-toolbar class="md-primary tolbarconrario" >
+    <div class="md-toolbar-tools" md-colors="{color: 'background-200'}">
+      <h2>Datos</h2>
+    </div>
+</md-toolbar>
+ <md-content md-whiteframe="1" class="overflowEsconder">
+ <div layout="row" layout-aling="center start">       
+        <md-input-container class="md-block input-container-margen" ng-if="tdParticipantesModelo.editopcion < 2" flex="auto">
+            <label>Código Del Participante</label>
+            <md-select ng-model="tdParticipantesModelo.idusuarioIdproveeIdperson" ng-change="changeIdusuarioIdproveeIdperson()" required>
+             <md-option ng-repeat="item in listaMsUsuariosIdusuarioIdproveeIdperson" ng-value="item.id">
+                 {{item.valor}}
+             </md-option>
+            </md-select>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdParticipantesModelo.editopcion > 1">  
+            <div class="letraLabel">Código Del Participante:</div>
+            <div class="letraTexto">{{tdParticipantesModelo.idusuarioIdproveeIdpersonTxt}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdParticipantesModelo.editopcion < 2" flex="auto">
+            <label>Nombre</label>
+            <textarea ng-model="tdParticipantesModelo.nombresrazonsocial" md-maxlength="600" rows="5" md-select-on-focus></textarea>
+            <div ng-messages="tdParticipantesForm.nombresrazonsocial.$error">
+            <div ng-message="tdParticipantesForm.nombresrazonsocial.$error.required">Se requiere el Nombre.</div>
+            <div ng-message="tdParticipantesForm.nombresrazonsocial.$error.md-maxlength">El Nombre tiene un m&aacute;ximo de 600 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdParticipantesModelo.editopcion > 1">  
+            <div class="letraLabel">Nombre:</div>
+            <div class="letraTexto">{{tdParticipantesModelo.nombresrazonsocial}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdParticipantesModelo.editopcion < 2" flex="auto">
+            <label>Institución</label>
+            <input type="text" md-maxlength="1" required name="tipo" ng-model="tdParticipantesModelo.tipo">
+            <div ng-messages="tdParticipantesForm.tipo.$error">
+            <div ng-message="tdParticipantesForm.tipo.$error.required">Se requiere el Institución.</div>
+            <div ng-message="tdParticipantesForm.tipo.$error.md-maxlength">El Institución tiene un m&aacute;ximo de 1 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdParticipantesModelo.editopcion > 1">  
+            <div class="letraLabel">Institución:</div>
+            <div class="letraTexto">{{tdParticipantesModelo.tipo}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdParticipantesModelo.editopcion < 2" flex="auto">
+            <label>Si No Participante</label>
+            <input type="text" md-maxlength="1" required name="flagacompaniante" ng-model="tdParticipantesModelo.flagacompaniante">
+            <div ng-messages="tdParticipantesForm.flagacompaniante.$error">
+            <div ng-message="tdParticipantesForm.flagacompaniante.$error.required">Se requiere el Si No Participante.</div>
+            <div ng-message="tdParticipantesForm.flagacompaniante.$error.md-maxlength">El Si No Participante tiene un m&aacute;ximo de 1 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdParticipantesModelo.editopcion > 1">  
+            <div class="letraLabel">Si No Participante:</div>
+            <div class="letraTexto">{{tdParticipantesModelo.flagacompaniante}}</div>
+         </div>			 
+ </div>
+</md-content>
+</div>
+<div>&nbsp;</div>
+
+</div> <!-- FIN -->
+
+<!-- DIALOGOS --> 
+
+<!-- FIN DIALOGOS -->
+<!-- Footer -->
+<div ng-include="'paginas/pie.html'"></div>
+<!-- Fin Footer -->

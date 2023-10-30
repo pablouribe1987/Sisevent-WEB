@@ -1,0 +1,9 @@
+@CHARSET "UTF-8";
+
+.footer {
+   text-align: center;
+   position:fixed;
+   width:100%;
+   left:0px;
+   bottom:0px;
+}

@@ -1,0 +1,241 @@
+<div flex="100" layout="column" layout-align="start stretch" class="margenPersonsa" 
+data-ng-init="editmsUsuario()">
+
+<div layout="row" layout-aling="space-between start">
+     <div flex="auto" ng-if="nuevo">        
+        <p class="md-title">Nueva Persona</p>
+     </div>
+     <div flex="auto" ng-if="!nuevo">        
+        <p class="md-title">{{msUsuariosModelo.nombres+' '+msUsuariosModelo.apellidoPaterno}}</p>
+     </div>
+     <div flex="auto" layout="row" layout-aling="end center" class="alingizquierda">
+     <md-button class="md-raised md-warn botontamanio" ng-click="cancelarMsUsuarios()" >
+       <md-icon md-font-set="material-icons">undo</md-icon> 
+      <span ng-if="nuevo">Cancelar</span>
+       <span ng-if="!nuevo">Salir</span>   
+     </md-button>
+     <md-button  class="md-raised botontamanio" ng-click="salvarMsUsuarios($event)" ng-if="msUsuariosModelo.editopcion==1">
+       <md-icon md-font-set="material-icons">save</md-icon> 
+       <span >Grabar</span>       
+     </md-button>
+     <md-button  class="md-raised botontamaniogrande" ng-click="refrescarusuario($event)">
+       <md-icon md-font-set="material-icons">refresh</md-icon> 
+       <span >Refrescar</span>       
+     </md-button>
+     </div>
+</div>
+
+<div>
+<md-toolbar class="md-primary tolbarconrario" >
+    <div class="md-toolbar-tools" md-colors="{color: 'background-200'}">
+      <h2>Datos</h2>
+    </div>
+</md-toolbar>
+ <md-content md-whiteframe="1" class="overflowEsconder">
+ <div layout="row" layout-aling="center start"> 
+        
+        <md-input-container class="md-block input-container-margen" ng-if="msUsuariosModelo.editopcion < 2">
+            <label>Nombre de usuario:</label>
+            <input type="text" md-maxlength="100" required name="username" ng-model="msUsuariosModelo.username">
+            <div ng-messages="MsUsuariosDlgForm.username.$error">
+            <div ng-message="MsUsuariosDlgForm.username.$error.required">Se requiere el Nombre de usuario.</div>
+            <div ng-message="MsUsuariosDlgForm.username.$error.md-maxlength">El Nombre de usuario tiene un maximo de 100 caracteres.</div>
+            </div>
+         </md-input-container>
+         
+         <div class="letraenvoltura" ng-if="msUsuariosModelo.editopcion > 1">  
+            <div class="letraLabel">Nombre de usuario:</div>
+            <div class="letraTexto">{{msUsuariosModelo.username}}</div>
+         </div>
+         
+        <md-input-container	class="md-block input-container-margen"> 
+			<label>Nombres</label> 
+			<input type="text" md-maxlength="100" required name="nombres" ng-model="msUsuariosModelo.nombres"> 
+			<div ng-messages="MsUsuariosDlgForm.nombres.$error">
+            <div ng-message="MsUsuariosDlgForm.nombres.$error.required">Se requiere los nombres.</div>
+            <div ng-message="MsUsuariosDlgForm.nombres.$error.md-maxlength">Los nombres tiene un maximo de 100 caracteres.</div>
+            </div>
+        </md-input-container>			 
+   </div>    	
+   <div layout="row" layout-aling="center start">
+    	 <md-input-container class="md-block input-container-margen">
+            <label>Apellido Paterno</label>
+            <input type="text" md-maxlength="100" required name="apellidoPaterno" ng-model="msUsuariosModelo.apellidoPaterno">
+            <div ng-messages="MsUsuariosDlgForm.apellidoPaterno.$error">
+            <div ng-message="MsUsuariosDlgForm.apellidoPaterno.$error.required">Se requiere el Apellido Paterno.</div>
+            <div ng-message="MsUsuariosDlgForm.apellidoPaterno.$error.md-maxlength">El Apellido Paterno tiene un maximo de 100 caracteres.</div>
+            </div>
+         </md-input-container>
+         <md-input-container class="md-block input-container-margen">
+            <label>Apellido Materno</label>
+            <input type="text" md-maxlength="100" required name="apellidoMaterno" ng-model="msUsuariosModelo.apellidoMaterno">
+            <div ng-messages="MsUsuariosDlgForm.apellidoMaterno.$error">
+            <div ng-message="MsUsuariosDlgForm.apellidoMaterno.$error.required">Se requiere el Apellido Materno.</div>
+            <div ng-message="MsUsuariosDlgForm.apellidoMaterno.$error.md-maxlength">El Apellido Materno tiene un maximo de 100 caracteres.</div>
+            </div>
+         </md-input-container>
+    </div>
+    <div layout="row" layout-aling="center start">
+         <md-input-container class="md-block input-container-margen" ng-if="msUsuariosModelo.editopcion < 2">
+            <label>Anexo</label>
+            <input type="text" md-maxlength="20" required name="anexo" ng-model="msUsuariosModelo.anexo">
+            <div ng-messages="msUsuariosForm.anexo.$error">
+            <div ng-message="msUsuariosForm.anexo.$error.required">Se requiere el Anexo.</div>
+            <div ng-message="msUsuariosForm.anexo.$error.md-maxlength">El Anexo tiene un maximo de 20 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="msUsuariosModelo.editopcion > 1">  
+            <div class="letraLabel">Anexo:</div>
+            <div class="letraTexto">{{msUsuariosModelo.anexo}}</div>
+         </div>
+         
+         <md-input-container class="md-block input-container-margen" ng-if="msUsuariosModelo.editopcion < 2">
+            <label>Celular</label>
+            <input type="text" md-maxlength="20" required name="celular" ng-model="msUsuariosModelo.celular">
+            <div ng-messages="msUsuariosForm.celular.$error">
+            <div ng-message="msUsuariosForm.celular.$error.required">Se requiere el Celular.</div>
+            <div ng-message="msUsuariosForm.celular.$error.md-maxlength">El Celular tiene un maximo de 20 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="msUsuariosModelo.editopcion > 1">  
+            <div class="letraLabel">Celular:</div>
+            <div class="letraTexto">{{msUsuariosModelo.celular}}</div>
+         </div>
+         
+         <md-input-container class="md-block input-container-margen" ng-if="msUsuariosModelo.editopcion < 2">
+            <label>Correo</label>
+            <input type="text" md-maxlength="200" required name="correo" ng-model="msUsuariosModelo.correo">
+            <div ng-messages="msUsuariosForm.correo.$error">
+            <div ng-message="msUsuariosForm.correo.$error.required">Se requiere el Correo.</div>
+            <div ng-message="msUsuariosForm.correo.$error.md-maxlength">El Correo tiene un maximo de 200 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="msUsuariosModelo.editopcion > 1">  
+            <div class="letraLabel">Correo:</div>
+            <div class="letraTexto">{{msUsuariosModelo.correo}}</div>
+         </div>   
+    </div>
+</md-content>
+</div>
+<div>&nbsp;</div>
+<div>
+<md-toolbar class="md-primary tolbarconrario">
+    <div class="md-toolbar-tools" md-colors="{color: 'background-200'}">
+      <h2 class="md-flex" >Contraseña</h2>
+    </div>
+</md-toolbar>
+<md-content md-whiteframe="1" class="overflowEsconder">         
+         <div layout="row" layout-aling="center start" class="margenPersonsa">
+       <md-input-container class="md-block input-container-margen">
+            <label>Contrase&ntilde;a</label>
+            <input type="password" md-maxlength="100" required name="contrasenia" 
+            ng-model="msUsuariosModelo.contrasenia" 
+            strength id="tcontraseniaid" feedback="false" autocomplete="new-password"
+            >
+            <div ng-messages="MsUsuariosDlgForm.contrasenia.$error">
+            <div ng-message="MsUsuariosDlgForm.contrasenia.$error.required">Se requiere la Contrase&ntilde;a.</div>
+            <div ng-message="MsUsuariosDlgForm.contrasenia.$error.md-maxlength">La Contrase&ntilde;a tiene un maximo de 100 caracteres.</div>
+            </div>
+         </md-input-container>
+         <md-input-container class="md-block input-container-margen">
+            <label>Repetir Contrase&ntilde;a</label>
+            <input type="password" md-maxlength="100" required name="contraseniaConfir" 
+            ng-model="msUsuariosModelo.contraseniaConfir" 
+            strength id="tcontraseniaConfirid" feedback="false" autocomplete="new-password"
+            >
+            <div ng-messages="MsUsuariosDlgForm.contraseniaConfir.$error">
+            <div ng-message="MsUsuariosDlgForm.contraseniaConfir.$error.required">Se requiere repita la Contrase&ntilde;a.</div>
+            <div ng-message="MsUsuariosDlgForm.contraseniaConfir.$error.md-maxlength">La Contrase&ntilde;a tiene un maximo de 100 caracteres.</div>
+            </div>
+         </md-input-container>         
+</div>
+</md-content>
+</div>
+<div>&nbsp;</div>
+<div >
+<md-toolbar class="md-primary tolbarconrario">
+    <div class="md-toolbar-tools" md-colors="{color: 'background-200'}">
+      <h2 class="md-flex">Perfil</h2>
+    </div>
+</md-toolbar>
+ <md-content md-whiteframe="1" class="overflowEsconder"> 
+        
+        <div layout="row" layout-aling="center start" class="margenPersonsa">
+        <md-input-container class="input-container-margen">
+         <label>Sede</label>
+          <md-select ng-model="msUsuariosModelo.sede" required>
+            <md-optgroup label="Sedes">
+             <md-option ng-repeat="item in listasedes" ng-value="item">{{item}}</md-option>
+            </md-optgroup>
+          </md-select>
+         </md-input-container>
+        </div>
+        
+        <div layout="row" layout-aling="left start" class="margenPersonsa">
+        <md-input-container class="md-block input-container-margen" flex="none">
+          <label>Código</label>
+          <input class="entradachica" md-maxlength="10" name="Codigo" ng-model="uoCodToSearch" />
+        </md-input-container>
+        <md-button class="md-fab md-mini" id="popupContainerDlg" aria-label="Buscar por código documentario" 
+        ng-click="searchUOByCodigo($event)">
+            <md-icon md-font-set="material-icons">search</md-icon>
+        </md-button>
+        <md-button class="md-fab md-mini dialog-open-button" aria-label="Buscar en arbol" 
+        ng-click="showTreeDialog($event)">
+            <md-icon md-font-set="material-icons">format_indent_increase</md-icon>
+        </md-button>
+        <md-input-container class="input-container-margen">
+         <label>Unidad Org&aacute;nica</label>
+          <md-select class="entradamediana" ng-model="msUsuariosModelo.idunidad" required>
+            <md-optgroup label="Unidad Org&aacute;nica">
+             <md-option ng-repeat="item in listaUO" ng-value="item.idunidad">{{item.descripcion}}</md-option>
+            </md-optgroup>
+          </md-select>
+         </md-input-container>
+        </div>
+            
+         <div layout="row" layout-aling="center start" class="margenPersonsa">         
+         <div layout="row" layout-wrap flex>
+            <div flex="50" ng-repeat="(rol,descripcion) in listaroles">
+              <md-checkbox ng-checked="exists(rol, msUsuariosModelo.rolesSistema)" 
+                           ng-click="toggle(rol, msUsuariosModelo.rolesSistema)">
+                {{ descripcion }} 
+                <span ng-if="exists(rol, msUsuariosModelo.rolesSistema)">selected</span>
+              </md-checkbox>
+            </div>
+          </div>
+         </div>
+</md-content>
+</div>
+<div>&nbsp;</div>
+
+
+</div> <!-- FIN -->
+
+<!-- DIALOGOS -->
+<div style="visibility: hidden">
+   <div class="md-dialog-container" id="treeDialog"><md-dialog layout-padding> <md-toolbar>
+      <div class="md-toolbar-tools" md-colors="{color: 'background-200'}">
+         <h2>Unidades Orgánicas</h2> <span flex></span> <md-button class="md-icon-button" ng-click="cancel()">
+         <md-icon md-font-set="material-icons" aria-label="Close dialog">clear</md-icon> </md-button>
+      </div>
+      </md-toolbar> <md-dialog-content>
+      <div class="md-dialog-content">
+         <ul tree roots="listaUOTree" item="n">
+            <li draggable="true" id="{{n.id}}" ng-init="collapsed=true">
+               <div class="node" ng-style="{'padding-left':(20*level)+'px'}"><md-button class="treeBotonEstado"
+                     ng-click="collapsed=!collapsed"
+                  > <md-icon ng-show="!collapsed && tienechildren" class="md-treeActivo" md-font-set="material-icons">play_arrow</md-icon>
+                  <md-icon ng-show="collapsed && tienechildren" class="md-treeDesactivo" md-font-set="material-icons">play_arrow</md-icon>
+                  </md-button> <span ng-click="setIdUnidad(n.id)" class="treenombreover">{{n.name}}</span></div>
+               <div ng-show="!collapsed"><recur></recur></div>
+            </li>
+         </ul>
+      </div>
+      </md-dialog-content> <md-dialog-actions layout="row" layout-align="center end"> <md-button
+         class="md-raised md-primary alargarBoton" ng-click="cancel()"
+      > Cancelar </md-button> </md-dialog-actions> </md-dialog></div>
+</div>
+<!-- Footer -->
+<div ng-include="'paginas/pie.html'"></div>
+<!-- Fin Footer -->

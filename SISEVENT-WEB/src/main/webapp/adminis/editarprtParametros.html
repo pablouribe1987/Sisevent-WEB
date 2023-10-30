@@ -1,0 +1,112 @@
+<div flex="100" layout="column" layout-align="start stretch" class="margenPersonsa" 
+data-ng-init="editprtParametros()">
+
+<div layout="row" layout-aling="space-between start">
+     <div flex="auto" ng-if="nuevo">        
+        <p class="md-title">Parámetros del Sistema</p>
+     </div>
+     <div flex="auto" ng-if="!nuevo">        
+        <p class="md-title">{{prtParametrosModelo.descripcion}}</p>
+     </div>
+     <div flex="auto" layout="row" layout-aling="end center" class="alingizquierda">
+     
+     <md-button class="md-raised md-warn botontamanio" 
+     ng-click="cancelarPrtParametros()"
+     >
+       <md-icon md-font-set="material-icons">undo</md-icon> 
+       <span ng-if="nuevo">Cancelar</span>
+       <span ng-if="!nuevo">Salir</span>       
+     </md-button>
+     
+<!--      <md-button class="md-raised md-warn botontamanio" ng-click="cancelarPrtParametrosTema()" -->
+<!--      ng-if="prtParametrosModelo.editopcion==3" -->
+<!--      > -->
+<!--        <md-icon md-font-set="material-icons">undo</md-icon>  -->
+<!--        <span ng-if="nuevo">Cancelar</span> -->
+<!--        <span ng-if="!nuevo">Salir</span>        -->
+<!--      </md-button> -->
+     
+     <md-button  class="md-raised botontamanio" ng-click="salvarPrtParametros($event)" 
+     ng-if="prtParametrosModelo.editopcion==1 || prtParametrosModelo.editopcion == 3">
+       <md-icon md-font-set="material-icons">save</md-icon> 
+       <span >Grabar</span>       
+     </md-button>
+     </div>
+</div>
+
+<md-toolbar class="md-primary tolbarconrario" >
+    <div class="md-toolbar-tools" md-colors="{color: 'background-200'}">
+      <h2>Datos</h2>
+    </div>
+</md-toolbar>
+
+ <md-content md-whiteframe="1" class="overflowEsconder">
+ <div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="prtParametrosModelo.editopcion == 1">
+            <label>Padre</label>
+            <md-select ng-model="prtParametrosModelo.idpadre">
+               <md-option ng-repeat="item in listaPadres" ng-value="item.id">
+                {{ item.valor }}
+               </md-option>
+              </md-select>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="prtParametrosModelo.editopcion > 1">  
+            <div class="letraLabel">Padre:</div>
+            <div class="letraTexto">{{prtParametrosModelo.idpadreTxt}}</div>
+         </div>			 
+ </div>
+ 
+ <div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="prtParametrosModelo.editopcion == 1 || prtParametrosModelo.editopcion == 3">
+            <label>Parámetro</label>
+            <input type="text" md-maxlength="150" required name="descripcion" ng-model="prtParametrosModelo.descripcion">
+            <div ng-messages="prtParametrosDlgForm.descripcion.$error">
+            <div ng-message="prtParametrosDlgForm.descripcion.$error.required">Se requiere el Parámetro.</div>
+            <div ng-message="prtParametrosDlgForm.descripcion.$error.md-maxlength">El Parámetro tiene un maximo de 150 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="prtParametrosModelo.editopcion == 2">  
+            <div class="letraLabel">Parámetro:</div>
+            <div class="letraTexto">{{prtParametrosModelo.descripcion}}</div>
+         </div>			 
+ </div>
+ 
+ <div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="prtParametrosModelo.editopcion == 1 || prtParametrosModelo.editopcion == 3">
+            <label>Opción Corta</label>
+            <input type="text" md-maxlength="150" name="descripcioncorta" ng-model="prtParametrosModelo.descripcioncorta">
+            <div ng-messages="prtParametrosDlgForm.descripcioncorta.$error">
+            <div ng-message="prtParametrosDlgForm.descripcioncorta.$error.md-maxlength">El Opción Corta tiene un maximo de 20 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="prtParametrosModelo.editopcion == 2">  
+            <div class="letraLabel">Opción Corta:</div>
+            <div class="letraTexto">{{prtParametrosModelo.descripcioncorta}}</div>
+         </div>			 
+ </div>
+ 
+ <div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="prtParametrosModelo.editopcion == 1 || prtParametrosModelo.editopcion == 3">
+            <label>Orden</label>
+            <input type="number" md-maxlength="6" name="orden" ng-model="prtParametrosModelo.orden">
+            <div ng-messages="prtParametrosDlgForm.orden.$error">
+            <div ng-message="prtParametrosDlgForm.orden.$error.md-maxlength">El Orden tiene un maximo de 6 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="prtParametrosModelo.editopcion == 2">  
+            <div class="letraLabel">Orden:</div>
+            <div class="letraTexto">{{prtParametrosModelo.orden}}</div>
+         </div>			 
+ </div>	
+ 
+</md-content>
+
+<div>&nbsp;</div>
+
+</div> <!-- FIN -->
+
+<!-- DIALOGOS -->
+<!-- FIN DIALOGOS -->
+<!-- Footer -->
+<div ng-include="'paginas/pie.html'"></div>
+<!-- Fin Footer -->

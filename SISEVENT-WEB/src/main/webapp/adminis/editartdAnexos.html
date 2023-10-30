@@ -1,0 +1,223 @@
+<div flex="100" layout="column" layout-align="start stretch" class="margenPersonsa" 
+data-ng-init="loadtdAnexos()">
+
+<div layout="row" layout-aling="space-between start">
+     <div flex="auto" ng-if="nuevo">        
+        <p class="md-title">Nueva  Anex</p>
+     </div>
+     <div flex="auto" ng-if="!nuevo">        
+        <p class="md-title">{{tdAnexosModelo.descripcion}}</p>
+     </div>
+     <div flex="auto" layout="row" layout-aling="end center" class="alingizquierda">
+     <md-button class="md-raised md-warn botontamanio" ng-click="cancelarTdAnexos()">
+       <md-icon md-font-set="material-icons">undo</md-icon> 
+       <span >Cancelar</span>       
+     </md-button>
+     <md-button  class="md-raised botontamanio" ng-click="salvarTdAnexos($event)">
+       <md-icon md-font-set="material-icons">save</md-icon> 
+       <span >Grabar</span>       
+     </md-button>
+     </div>
+</div>
+
+<div>
+<md-toolbar class="md-primary tolbarconrario" >
+    <div class="md-toolbar-tools" md-colors="{color: 'background-200'}">
+      <h2>Datos</h2>
+    </div>
+</md-toolbar>
+ <md-content md-whiteframe="1" class="overflowEsconder">
+ <div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdAnexosModelo.editopcion < 2">
+            <label>Número</label>
+            <input type="text" md-maxlength="10" required name="idsacc" ng-model="tdAnexosModelo.idsacc">
+            <div ng-messages="tdAnexosDlgForm.idsacc.$error">
+            <div ng-message="tdAnexosDlgForm.idsacc.$error.required">Se requiere el Número.</div>
+            <div ng-message="tdAnexosDlgForm.idsacc.$error.md-maxlength">El Número tiene un maximo de 10 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdAnexosModelo.editopcion > 1">  
+            <div class="letraLabel">Número:</div>
+            <div class="letraTexto">{{tdAnexosModelo.idsacc}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdAnexosModelo.editopcion < 2">
+            <label>Archivo En Repositorio</label>
+            <input type="text" md-maxlength="255" required name="filename" ng-model="tdAnexosModelo.filename">
+            <div ng-messages="tdAnexosDlgForm.filename.$error">
+            <div ng-message="tdAnexosDlgForm.filename.$error.required">Se requiere el Archivo En Repositorio.</div>
+            <div ng-message="tdAnexosDlgForm.filename.$error.md-maxlength">El Archivo En Repositorio tiene un maximo de 255 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdAnexosModelo.editopcion > 1">  
+            <div class="letraLabel">Archivo En Repositorio:</div>
+            <div class="letraTexto">{{tdAnexosModelo.filename}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdAnexosModelo.editopcion < 2">
+            <label>Anexo</label>
+            <input type="text" md-maxlength="255" required name="filenameoriginal" ng-model="tdAnexosModelo.filenameoriginal">
+            <div ng-messages="tdAnexosDlgForm.filenameoriginal.$error">
+            <div ng-message="tdAnexosDlgForm.filenameoriginal.$error.required">Se requiere el Anexo.</div>
+            <div ng-message="tdAnexosDlgForm.filenameoriginal.$error.md-maxlength">El Anexo tiene un maximo de 255 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdAnexosModelo.editopcion > 1">  
+            <div class="letraLabel">Anexo:</div>
+            <div class="letraTexto">{{tdAnexosModelo.filenameoriginal}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdAnexosModelo.editopcion < 2">
+            <label>Fecha De Creación</label>
+            <input type="text" md-maxlength="7" required name="fechaCrea" ng-model="tdAnexosModelo.fechaCrea">
+            <div ng-messages="tdAnexosDlgForm.fechaCrea.$error">
+            <div ng-message="tdAnexosDlgForm.fechaCrea.$error.required">Se requiere el Fecha De Creación.</div>
+            <div ng-message="tdAnexosDlgForm.fechaCrea.$error.md-maxlength">El Fecha De Creación tiene un maximo de 7 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdAnexosModelo.editopcion > 1">  
+            <div class="letraLabel">Fecha De Creación:</div>
+            <div class="letraTexto">{{tdAnexosModelo.fechaCrea}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdAnexosModelo.editopcion < 2">
+            <label>Fecha De Modificación</label>
+            <input type="text" md-maxlength="7" required name="fechaModif" ng-model="tdAnexosModelo.fechaModif">
+            <div ng-messages="tdAnexosDlgForm.fechaModif.$error">
+            <div ng-message="tdAnexosDlgForm.fechaModif.$error.required">Se requiere el Fecha De Modificación.</div>
+            <div ng-message="tdAnexosDlgForm.fechaModif.$error.md-maxlength">El Fecha De Modificación tiene un maximo de 7 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdAnexosModelo.editopcion > 1">  
+            <div class="letraLabel">Fecha De Modificación:</div>
+            <div class="letraTexto">{{tdAnexosModelo.fechaModif}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdAnexosModelo.editopcion < 2">
+            <label>Usuario Que Crea</label>
+            <input type="text" md-maxlength="10" required name="iduserCrea" ng-model="tdAnexosModelo.iduserCrea">
+            <div ng-messages="tdAnexosDlgForm.iduserCrea.$error">
+            <div ng-message="tdAnexosDlgForm.iduserCrea.$error.required">Se requiere el Usuario Que Crea.</div>
+            <div ng-message="tdAnexosDlgForm.iduserCrea.$error.md-maxlength">El Usuario Que Crea tiene un maximo de 10 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdAnexosModelo.editopcion > 1">  
+            <div class="letraLabel">Usuario Que Crea:</div>
+            <div class="letraTexto">{{tdAnexosModelo.iduserCrea}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdAnexosModelo.editopcion < 2">
+            <label>Usuario Del Sistema Que Modifica El Registro</label>
+            <input type="text" md-maxlength="10" required name="iduserModif" ng-model="tdAnexosModelo.iduserModif">
+            <div ng-messages="tdAnexosDlgForm.iduserModif.$error">
+            <div ng-message="tdAnexosDlgForm.iduserModif.$error.required">Se requiere el Usuario Del Sistema Que Modifica El Registro.</div>
+            <div ng-message="tdAnexosDlgForm.iduserModif.$error.md-maxlength">El Usuario Del Sistema Que Modifica El Registro tiene un maximo de 10 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdAnexosModelo.editopcion > 1">  
+            <div class="letraLabel">Usuario Del Sistema Que Modifica El Registro:</div>
+            <div class="letraTexto">{{tdAnexosModelo.iduserModif}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdAnexosModelo.editopcion < 2">
+            <label>Usuario Que Modifica</label>
+            <input type="text" md-maxlength="1" required name="estado" ng-model="tdAnexosModelo.estado">
+            <div ng-messages="tdAnexosDlgForm.estado.$error">
+            <div ng-message="tdAnexosDlgForm.estado.$error.required">Se requiere el Usuario Que Modifica.</div>
+            <div ng-message="tdAnexosDlgForm.estado.$error.md-maxlength">El Usuario Que Modifica tiene un maximo de 1 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdAnexosModelo.editopcion > 1">  
+            <div class="letraLabel">Usuario Que Modifica:</div>
+            <div class="letraTexto">{{tdAnexosModelo.estado}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdAnexosModelo.editopcion < 2">
+            <label>Dirección De Red Del Creador</label>
+            <input type="text" md-maxlength="50" required name="rmtaddress" ng-model="tdAnexosModelo.rmtaddress">
+            <div ng-messages="tdAnexosDlgForm.rmtaddress.$error">
+            <div ng-message="tdAnexosDlgForm.rmtaddress.$error.required">Se requiere el Dirección De Red Del Creador.</div>
+            <div ng-message="tdAnexosDlgForm.rmtaddress.$error.md-maxlength">El Dirección De Red Del Creador tiene un maximo de 50 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdAnexosModelo.editopcion > 1">  
+            <div class="letraLabel">Dirección De Red Del Creador:</div>
+            <div class="letraTexto">{{tdAnexosModelo.rmtaddress}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdAnexosModelo.editopcion < 2">
+            <label>Dirección De Red Del Modificador</label>
+            <input type="text" md-maxlength="50" required name="rmtaddressrst" ng-model="tdAnexosModelo.rmtaddressrst">
+            <div ng-messages="tdAnexosDlgForm.rmtaddressrst.$error">
+            <div ng-message="tdAnexosDlgForm.rmtaddressrst.$error.required">Se requiere el Dirección De Red Del Modificador.</div>
+            <div ng-message="tdAnexosDlgForm.rmtaddressrst.$error.md-maxlength">El Dirección De Red Del Modificador tiene un maximo de 50 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdAnexosModelo.editopcion > 1">  
+            <div class="letraLabel">Dirección De Red Del Modificador:</div>
+            <div class="letraTexto">{{tdAnexosModelo.rmtaddressrst}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdAnexosModelo.editopcion < 2">
+            <label>Última Modificación</label>
+            <input type="text" md-maxlength="10" required name="lastmodified" ng-model="tdAnexosModelo.lastmodified">
+            <div ng-messages="tdAnexosDlgForm.lastmodified.$error">
+            <div ng-message="tdAnexosDlgForm.lastmodified.$error.required">Se requiere el Última Modificación.</div>
+            <div ng-message="tdAnexosDlgForm.lastmodified.$error.md-maxlength">El Última Modificación tiene un maximo de 10 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdAnexosModelo.editopcion > 1">  
+            <div class="letraLabel">Última Modificación:</div>
+            <div class="letraTexto">{{tdAnexosModelo.lastmodified}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdAnexosModelo.editopcion < 2">
+            <label>Tamaño</label>
+            <input type="text" md-maxlength="10" required name="tamanio" ng-model="tdAnexosModelo.tamanio">
+            <div ng-messages="tdAnexosDlgForm.tamanio.$error">
+            <div ng-message="tdAnexosDlgForm.tamanio.$error.required">Se requiere el Tamaño.</div>
+            <div ng-message="tdAnexosDlgForm.tamanio.$error.md-maxlength">El Tamaño tiene un maximo de 10 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdAnexosModelo.editopcion > 1">  
+            <div class="letraLabel">Tamaño:</div>
+            <div class="letraTexto">{{tdAnexosModelo.tamanio}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdAnexosModelo.editopcion < 2">
+            <label>Tipo</label>
+            <input type="text" md-maxlength="100" required name="tipo" ng-model="tdAnexosModelo.tipo">
+            <div ng-messages="tdAnexosDlgForm.tipo.$error">
+            <div ng-message="tdAnexosDlgForm.tipo.$error.required">Se requiere el Tipo.</div>
+            <div ng-message="tdAnexosDlgForm.tipo.$error.md-maxlength">El Tipo tiene un maximo de 100 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdAnexosModelo.editopcion > 1">  
+            <div class="letraLabel">Tipo:</div>
+            <div class="letraTexto">{{tdAnexosModelo.tipo}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdAnexosModelo.editopcion < 2">
+            <label>Línea De Flujo Donde Se Origina</label>
+            <input type="text" md-maxlength="10" required name="idflujo" ng-model="tdAnexosModelo.idflujo">
+            <div ng-messages="tdAnexosDlgForm.idflujo.$error">
+            <div ng-message="tdAnexosDlgForm.idflujo.$error.required">Se requiere el Línea De Flujo Donde Se Origina.</div>
+            <div ng-message="tdAnexosDlgForm.idflujo.$error.md-maxlength">El Línea De Flujo Donde Se Origina tiene un maximo de 10 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdAnexosModelo.editopcion > 1">  
+            <div class="letraLabel">Línea De Flujo Donde Se Origina:</div>
+            <div class="letraTexto">{{tdAnexosModelo.idflujo}}</div>
+         </div>			 
+ </div>
+</md-content>
+</div>
+<div>&nbsp;</div>
+
+</div> <!-- FIN -->
+
+<!-- DIALOGOS -->
+<!-- FIN DIALOGOS -->
+<!-- Footer -->
+<div ng-include="'paginas/pie.html'"></div>
+<!-- Fin Footer -->

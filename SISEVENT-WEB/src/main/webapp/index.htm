@@ -1,0 +1,19 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<%
+ //String viewuri = request.getContextPath()+"/paginas/landingInicio.html";
+ //System.out.println(viewuri);
+ //response.sendRedirect(viewuri);
+ //request.getRequestDispatcher(viewuri).forward(request, response);
+ %>
+<html>
+	<head>
+		<title>SISTEMA DE SEGUIMIENTO DE EVENTOS-SISEVENT</title>
+      <script type="text/javascript"> 
+        console.log( "REDIRECCIONANDO A: <%= request.getContextPath() %>/paginas/listatdEvento.html");
+      </script> 
+	</head>
+	<body>
+      <jsp:forward page="paginas/listatdEvento.html" /> 
+    <h1>Bien venido....</h1>
+	</body>
+</html>

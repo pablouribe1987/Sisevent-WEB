@@ -1,0 +1,290 @@
+<div flex="100" layout="column" layout-align="start stretch" class="margenPersonsa" data-ng-init="loadtdFlujo()">
+
+<div layout="row" layout-aling="space-between start">
+     <div flex="auto" ng-if="nuevo">        
+        <p class="md-title">Nueva  Movimiento</p>
+     </div>
+     <div flex="auto" ng-if="!nuevo">        
+        <p class="md-title">{{tdFlujoModelo.descripcion}}</p>
+     </div>
+     <div flex="auto" layout="row" layout-aling="end center" class="alingizquierda">
+     <md-button class="md-raised md-warn botontamanio" ng-click="cancelarTdFlujo()">
+       <md-icon md-font-set="material-icons">undo</md-icon> 
+       <span >Cancelar</span>       
+     </md-button>
+     <md-button  class="md-raised botontamanio" ng-click="salvarTdFlujo($event)">
+       <md-icon md-font-set="material-icons">save</md-icon> 
+       <span >Grabar</span>       
+     </md-button>
+     </div>
+</div>
+
+<div>
+<md-toolbar class="md-primary tolbarconrario" >
+    <div class="md-toolbar-tools" md-colors="{color: 'background-200'}">
+      <h2>Datos</h2>
+    </div>
+</md-toolbar>
+ <md-content md-whiteframe="1" class="overflowEsconder">
+ <div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdFlujoModelo.editopcion < 2">
+            <label>Deriva</label>
+            <input type="text" md-maxlength="10" required name="idflujopadre" ng-model="tdFlujoModelo.idflujopadre">
+            <div ng-messages="tdFlujoDlgForm.idflujopadre.$error">
+            <div ng-message="tdFlujoDlgForm.idflujopadre.$error.required">Se requiere el Deriva.</div>
+            <div ng-message="tdFlujoDlgForm.idflujopadre.$error.md-maxlength">El Deriva tiene un maximo de 10 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdFlujoModelo.editopcion > 1">  
+            <div class="letraLabel">Deriva:</div>
+            <div class="letraTexto">{{tdFlujoModelo.idflujopadre}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdFlujoModelo.editopcion < 2">
+            <label>Número</label>
+            <input type="text" md-maxlength="10" required name="idsacc" ng-model="tdFlujoModelo.idsacc">
+            <div ng-messages="tdFlujoDlgForm.idsacc.$error">
+            <div ng-message="tdFlujoDlgForm.idsacc.$error.required">Se requiere el Número.</div>
+            <div ng-message="tdFlujoDlgForm.idsacc.$error.md-maxlength">El Número tiene un maximo de 10 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdFlujoModelo.editopcion > 1">  
+            <div class="letraLabel">Número:</div>
+            <div class="letraTexto">{{tdFlujoModelo.idsacc}}</div>
+         </div>			 
+ </div>  
+   <div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdFlujoModelo.editopcion < 2">
+            <label>Unidad Que Deriva</label>
+            <input type="text" md-maxlength="10" required name="idunidadDeriva" ng-model="tdFlujoModelo.idunidadDeriva">
+            <div ng-messages="tdFlujoDlgForm.idunidadDeriva.$error">
+            <div ng-message="tdFlujoDlgForm.idunidadDeriva.$error.required">Se requiere el Unidad Que Deriva.</div>
+            <div ng-message="tdFlujoDlgForm.idunidadDeriva.$error.md-maxlength">El Unidad Que Deriva tiene un maximo de 10 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdFlujoModelo.editopcion > 1">  
+            <div class="letraLabel">Unidad Que Deriva:</div>
+            <div class="letraTexto">{{tdFlujoModelo.idunidadDeriva}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdFlujoModelo.editopcion < 2">
+            <label>Usuario Que Deriva</label>
+            <input type="text" md-maxlength="10" required name="iduserDeriva" ng-model="tdFlujoModelo.iduserDeriva">
+            <div ng-messages="tdFlujoDlgForm.iduserDeriva.$error">
+            <div ng-message="tdFlujoDlgForm.iduserDeriva.$error.required">Se requiere el Usuario Que Deriva.</div>
+            <div ng-message="tdFlujoDlgForm.iduserDeriva.$error.md-maxlength">El Usuario Que Deriva tiene un maximo de 10 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdFlujoModelo.editopcion > 1">  
+            <div class="letraLabel">Usuario Que Deriva:</div>
+            <div class="letraTexto">{{tdFlujoModelo.iduserDeriva}}</div>
+         </div>			 
+ </div>  
+   <div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdFlujoModelo.editopcion < 2">
+            <label>Unidad Que Recepciona</label>
+            <input type="text" md-maxlength="10" required name="idunidadRecepciona" ng-model="tdFlujoModelo.idunidadRecepciona">
+            <div ng-messages="tdFlujoDlgForm.idunidadRecepciona.$error">
+            <div ng-message="tdFlujoDlgForm.idunidadRecepciona.$error.required">Se requiere el Unidad Que Recepciona.</div>
+            <div ng-message="tdFlujoDlgForm.idunidadRecepciona.$error.md-maxlength">El Unidad Que Recepciona tiene un maximo de 10 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdFlujoModelo.editopcion > 1">  
+            <div class="letraLabel">Unidad Que Recepciona:</div>
+            <div class="letraTexto">{{tdFlujoModelo.idunidadRecepciona}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdFlujoModelo.editopcion < 2">
+            <label>Unsuario Que Recepciona</label>
+            <input type="text" md-maxlength="10" required name="iduserRecepciona" ng-model="tdFlujoModelo.iduserRecepciona">
+            <div ng-messages="tdFlujoDlgForm.iduserRecepciona.$error">
+            <div ng-message="tdFlujoDlgForm.iduserRecepciona.$error.required">Se requiere el Unsuario Que Recepciona.</div>
+            <div ng-message="tdFlujoDlgForm.iduserRecepciona.$error.md-maxlength">El Unsuario Que Recepciona tiene un maximo de 10 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdFlujoModelo.editopcion > 1">  
+            <div class="letraLabel">Unsuario Que Recepciona:</div>
+            <div class="letraTexto">{{tdFlujoModelo.iduserRecepciona}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdFlujoModelo.editopcion < 2">
+            <label>Unidad Destino</label>
+            <input type="text" md-maxlength="10" required name="idunidadDestino" ng-model="tdFlujoModelo.idunidadDestino">
+            <div ng-messages="tdFlujoDlgForm.idunidadDestino.$error">
+            <div ng-message="tdFlujoDlgForm.idunidadDestino.$error.required">Se requiere el Unidad Destino.</div>
+            <div ng-message="tdFlujoDlgForm.idunidadDestino.$error.md-maxlength">El Unidad Destino tiene un maximo de 10 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdFlujoModelo.editopcion > 1">  
+            <div class="letraLabel">Unidad Destino:</div>
+            <div class="letraTexto">{{tdFlujoModelo.idunidadDestino}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdFlujoModelo.editopcion < 2">
+            <label>Usuario Destino</label>
+            <input type="text" md-maxlength="10" required name="iduserDestino" ng-model="tdFlujoModelo.iduserDestino">
+            <div ng-messages="tdFlujoDlgForm.iduserDestino.$error">
+            <div ng-message="tdFlujoDlgForm.iduserDestino.$error.required">Se requiere el Usuario Destino.</div>
+            <div ng-message="tdFlujoDlgForm.iduserDestino.$error.md-maxlength">El Usuario Destino tiene un maximo de 10 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdFlujoModelo.editopcion > 1">  
+            <div class="letraLabel">Usuario Destino:</div>
+            <div class="letraTexto">{{tdFlujoModelo.iduserDestino}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdFlujoModelo.editopcion < 2">
+            <label>Unidad Que Atiende</label>
+            <input type="text" md-maxlength="10" required name="idunidadAtiende" ng-model="tdFlujoModelo.idunidadAtiende">
+            <div ng-messages="tdFlujoDlgForm.idunidadAtiende.$error">
+            <div ng-message="tdFlujoDlgForm.idunidadAtiende.$error.required">Se requiere el Unidad Que Atiende.</div>
+            <div ng-message="tdFlujoDlgForm.idunidadAtiende.$error.md-maxlength">El Unidad Que Atiende tiene un maximo de 10 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdFlujoModelo.editopcion > 1">  
+            <div class="letraLabel">Unidad Que Atiende:</div>
+            <div class="letraTexto">{{tdFlujoModelo.idunidadAtiende}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdFlujoModelo.editopcion < 2">
+            <label>Usuario Que Atiende</label>
+            <input type="text" md-maxlength="10" required name="iduserAtiende" ng-model="tdFlujoModelo.iduserAtiende">
+            <div ng-messages="tdFlujoDlgForm.iduserAtiende.$error">
+            <div ng-message="tdFlujoDlgForm.iduserAtiende.$error.required">Se requiere el Usuario Que Atiende.</div>
+            <div ng-message="tdFlujoDlgForm.iduserAtiende.$error.md-maxlength">El Usuario Que Atiende tiene un maximo de 10 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdFlujoModelo.editopcion > 1">  
+            <div class="letraLabel">Usuario Que Atiende:</div>
+            <div class="letraTexto">{{tdFlujoModelo.iduserAtiende}}</div>
+         </div>			 
+ </div>  
+   <div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdFlujoModelo.editopcion < 2">
+            <label>Detalle De La Consulta</label>
+            <input type="text" md-maxlength="4000" required name="observacion" ng-model="tdFlujoModelo.observacion">
+            <div ng-messages="tdFlujoDlgForm.observacion.$error">
+            <div ng-message="tdFlujoDlgForm.observacion.$error.required">Se requiere el Detalle De La Consulta.</div>
+            <div ng-message="tdFlujoDlgForm.observacion.$error.md-maxlength">El Detalle De La Consulta tiene un maximo de 4000 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdFlujoModelo.editopcion > 1">  
+            <div class="letraLabel">Detalle De La Consulta:</div>
+            <div class="letraTexto">{{tdFlujoModelo.observacion}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdFlujoModelo.editopcion < 2">
+            <label>Tiempo De Estadia</label>
+            <input type="text" md-maxlength="4" required name="tiempoestadia" ng-model="tdFlujoModelo.tiempoestadia">
+            <div ng-messages="tdFlujoDlgForm.tiempoestadia.$error">
+            <div ng-message="tdFlujoDlgForm.tiempoestadia.$error.required">Se requiere el Tiempo De Estadia.</div>
+            <div ng-message="tdFlujoDlgForm.tiempoestadia.$error.md-maxlength">El Tiempo De Estadia tiene un maximo de 4 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdFlujoModelo.editopcion > 1">  
+            <div class="letraLabel">Tiempo De Estadia:</div>
+            <div class="letraTexto">{{tdFlujoModelo.tiempoestadia}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdFlujoModelo.editopcion < 2">
+            <label>Fecha De Creación</label>
+            <input type="text" md-maxlength="7" required name="fechaCrea" ng-model="tdFlujoModelo.fechaCrea">
+            <div ng-messages="tdFlujoDlgForm.fechaCrea.$error">
+            <div ng-message="tdFlujoDlgForm.fechaCrea.$error.required">Se requiere el Fecha De Creación.</div>
+            <div ng-message="tdFlujoDlgForm.fechaCrea.$error.md-maxlength">El Fecha De Creación tiene un maximo de 7 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdFlujoModelo.editopcion > 1">  
+            <div class="letraLabel">Fecha De Creación:</div>
+            <div class="letraTexto">{{tdFlujoModelo.fechaCrea}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdFlujoModelo.editopcion < 2">
+            <label>Fecha De Modificación</label>
+            <input type="text" md-maxlength="7" required name="fechaModif" ng-model="tdFlujoModelo.fechaModif">
+            <div ng-messages="tdFlujoDlgForm.fechaModif.$error">
+            <div ng-message="tdFlujoDlgForm.fechaModif.$error.required">Se requiere el Fecha De Modificación.</div>
+            <div ng-message="tdFlujoDlgForm.fechaModif.$error.md-maxlength">El Fecha De Modificación tiene un maximo de 7 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdFlujoModelo.editopcion > 1">  
+            <div class="letraLabel">Fecha De Modificación:</div>
+            <div class="letraTexto">{{tdFlujoModelo.fechaModif}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdFlujoModelo.editopcion < 2">
+            <label>Usuario Que Crea</label>
+            <input type="text" md-maxlength="10" required name="iduserCrea" ng-model="tdFlujoModelo.iduserCrea">
+            <div ng-messages="tdFlujoDlgForm.iduserCrea.$error">
+            <div ng-message="tdFlujoDlgForm.iduserCrea.$error.required">Se requiere el Usuario Que Crea.</div>
+            <div ng-message="tdFlujoDlgForm.iduserCrea.$error.md-maxlength">El Usuario Que Crea tiene un maximo de 10 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdFlujoModelo.editopcion > 1">  
+            <div class="letraLabel">Usuario Que Crea:</div>
+            <div class="letraTexto">{{tdFlujoModelo.iduserCrea}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdFlujoModelo.editopcion < 2">
+            <label>Usuario Que Modifica</label>
+            <input type="text" md-maxlength="10" required name="iduserModif" ng-model="tdFlujoModelo.iduserModif">
+            <div ng-messages="tdFlujoDlgForm.iduserModif.$error">
+            <div ng-message="tdFlujoDlgForm.iduserModif.$error.required">Se requiere el Usuario Que Modifica.</div>
+            <div ng-message="tdFlujoDlgForm.iduserModif.$error.md-maxlength">El Usuario Que Modifica tiene un maximo de 10 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdFlujoModelo.editopcion > 1">  
+            <div class="letraLabel">Usuario Que Modifica:</div>
+            <div class="letraTexto">{{tdFlujoModelo.iduserModif}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdFlujoModelo.editopcion < 2">
+            <label>Estado</label>
+            <input type="text" md-maxlength="1" required name="estado" ng-model="tdFlujoModelo.estado">
+            <div ng-messages="tdFlujoDlgForm.estado.$error">
+            <div ng-message="tdFlujoDlgForm.estado.$error.required">Se requiere el Estado.</div>
+            <div ng-message="tdFlujoDlgForm.estado.$error.md-maxlength">El Estado tiene un maximo de 1 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdFlujoModelo.editopcion > 1">  
+            <div class="letraLabel">Estado:</div>
+            <div class="letraTexto">{{tdFlujoModelo.estado}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdFlujoModelo.editopcion < 2">
+            <label>Dirección De Red Del Creador</label>
+            <input type="text" md-maxlength="50" required name="rmtaddress" ng-model="tdFlujoModelo.rmtaddress">
+            <div ng-messages="tdFlujoDlgForm.rmtaddress.$error">
+            <div ng-message="tdFlujoDlgForm.rmtaddress.$error.required">Se requiere el Dirección De Red Del Creador.</div>
+            <div ng-message="tdFlujoDlgForm.rmtaddress.$error.md-maxlength">El Dirección De Red Del Creador tiene un maximo de 50 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdFlujoModelo.editopcion > 1">  
+            <div class="letraLabel">Dirección De Red Del Creador:</div>
+            <div class="letraTexto">{{tdFlujoModelo.rmtaddress}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdFlujoModelo.editopcion < 2">
+            <label>Dirección De Red Del Modificador</label>
+            <input type="text" md-maxlength="50" required name="rmtaddressrst" ng-model="tdFlujoModelo.rmtaddressrst">
+            <div ng-messages="tdFlujoDlgForm.rmtaddressrst.$error">
+            <div ng-message="tdFlujoDlgForm.rmtaddressrst.$error.required">Se requiere el Dirección De Red Del Modificador.</div>
+            <div ng-message="tdFlujoDlgForm.rmtaddressrst.$error.md-maxlength">El Dirección De Red Del Modificador tiene un maximo de 50 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdFlujoModelo.editopcion > 1">  
+            <div class="letraLabel">Dirección De Red Del Modificador:</div>
+            <div class="letraTexto">{{tdFlujoModelo.rmtaddressrst}}</div>
+         </div>			 
+ </div>
+</md-content>
+</div>
+<div>&nbsp;</div>
+
+</div> <!-- FIN -->
+
+<!-- DIALOGOS -->
+<!-- FIN DIALOGOS -->
+<!-- Footer -->
+<div ng-include="'paginas/pie.html'"></div>
+<!-- Fin Footer -->

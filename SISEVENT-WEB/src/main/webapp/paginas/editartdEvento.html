@@ -1,0 +1,829 @@
+<div flex="100" layout="column" layout-align="start stretch" class="margenForm" 
+data-ng-init="edittdEvento()">
+
+<!-- //MPINARES 01092023 - INICIO - SE CAMBIA TODO -->
+
+	<md-toolbar md-colors="{background: 'primary-700'}"
+		class="md-toolbar-size">
+	<div class="md-toolbar-tools md-toolbar-tools-size">
+		<div flex="auto" ng-if="nuevo">
+			<h2 md-truncate md-colors="{color: 'background-A100'}">Nuevo evento</h2>
+		</div>
+		<md-button class="md-button-borde md-sm"
+			ng-click="cancelarTdEvento()" aria-label="Salir">
+		<!--          <md-icon md-font-set="material-icons">undo</md-icon>  -->
+		<span ng-if="nuevo">Salir</span> <span ng-if="!nuevo">Salir</span> </md-button>
+		<md-button class="md-button-borde md-sm"
+			ng-click="salvarTdEvento($event)"
+			ng-if="tdEventoModelo.editopcion==1"
+			aria-label="Grabar"> <!--          <md-icon md-font-set="material-icons">save</md-icon>  -->
+		<span>Grabar</span> </md-button>
+	</div>
+	</md-toolbar>
+
+<!-- <div layout="row" layout-aling="space-between start"> -->
+<!--      <div flex="auto" ng-if="nuevo">         -->
+<!--         <p class="md-title">Nueva Evento</p> -->
+<!--      </div> -->
+<!--      <div flex="auto" ng-if="!nuevo">         -->
+<!--         <p class="md-title">{{tdEventoModelo.XXX}}</p> -->
+<!--      </div> -->
+<!--      <div flex="auto" layout="row" layout-aling="end center" class="alingizquierda"> -->
+<!--      <md-button class="md-raised md-warn botontamanio" ng-click="cancelarTdEvento()"> -->
+<!--        <md-icon md-font-set="material-icons">undo</md-icon>  -->
+<!--        <span ng-if="nuevo">Cancelar</span> -->
+<!--        <span ng-if="!nuevo">Salir</span>    -->
+<!--      </md-button> -->
+<!--      <md-button class="md-raised botontamanio" ng-click="salvarTdEvento($event)" ng-if="tdEventoModelo.editopcion==1"> -->
+<!--        <md-icon md-font-set="material-icons">save</md-icon>  -->
+<!--        <span >Grabar</span>        -->
+<!--      </md-button> -->
+<!--      </div> -->
+<!-- </div> -->
+
+<div layout="column">
+<!-- <md-toolbar class="md-primary tolbarconrario" > -->
+<!--     <div class="md-toolbar-tools" md-colors="{color: 'background-200'}"> -->
+<!--       <h2>Datos</h2> -->
+<!--     </div> -->
+<!-- </md-toolbar> -->
+
+<fieldset style="margin: 15px;">
+			<legend>Informaci&oacute;n del evento</legend>
+			<md-content md-whiteframe="1" class="overflowEsconder" md-colors="{background: 'background-A100'}">
+			
+			 <div layout="row" layout-aling="center start"> 
+			        <div class="letraenvoltura" ng-if="tdEventoModelo.editopcion < 2" flex="auto">
+			        <label class="letraLabel" flex style="width: 160px;">T&iacute;tulo del evento</label>    
+			        <md-input-container md-no-float="true" class="input-container-margen letraTexto" flex="85" style="width: 85%;" >
+			            <input type="text" md-maxlength="256" required name="titulo" ng-model="tdEventoModelo.titulo"
+			                   placeholder="Ingresar t&iacute;tulo"
+			                   >
+			            <div ng-messages="tdEventoForm.titulo.$error">
+			            <div ng-message="tdEventoForm.titulo.$error.required">Se requiere el título</div>
+			            <div ng-message="tdEventoForm.titulo.$error.md-maxlength">El título tiene un m&aacute;ximo de 256 caracteres.</div>
+			            </div>
+			         </md-input-container>
+			        </div>
+			         <div class="letraenvoltura" ng-if="tdEventoModelo.editopcion > 1" flex="auto">  
+			            <div class="letraLabel">T&iacute;tulo del evento</div>
+			            <div class="letraTexto">{{tdEventoModelo.titulo}}</div>
+			         </div>			 
+			 </div>
+			 
+			 <div layout="row" layout-aling="center start"> 
+			        <div class="letraenvoltura" ng-if="tdEventoModelo.editopcion < 2" flex="auto">
+			        <label class="letraLabel" flex style="width: 160px;">Fecha solicitada</label>    
+	                <md-input-container md-no-float="true" class="input-container-margen letraTexto" flex="85">
+			            <md-datepicker required ng-model="tdEventoModelo.fechaSoliIniJUD" 
+			                     md-placeholder="Seleccione la Fecha De Inicio"
+			                     input-aria-describedby="datepicker-description"
+			                     input-aria-labelledby="datepicker-header ">
+			            </md-datepicker>
+			         </md-input-container>
+			         <label class="letraLabel" flex style="text-align: center;">a</label>
+			         <md-input-container md-no-float="true" class="input-container-margen letraTexto" flex="85">
+			            <md-datepicker required ng-model="tdEventoModelo.fechaSoliFinJUD" 
+			                     md-placeholder="Seleccione la Fecha De Fin"
+			                     input-aria-describedby="datepicker-description"
+			                     input-aria-labelledby="datepicker-header ">
+			            </md-datepicker>
+			         </md-input-container>
+			        </div>
+			         <div class="letraenvoltura" ng-if="tdEventoModelo.editopcion > 1" flex="auto">  
+			            <div class="letraLabel">Fecha solicitada</div>
+			            <div class="letraTexto">{{tdEventoModelo.fechaSoliIni}}</div>
+			         </div>	
+			         
+			         <md-input-container class="md-block input-container-margen"
+							ng-if="tdEventoModelo.editopcion < 2"
+							style="width: 600px;font-size: 12px;"> <md-checkbox
+							ng-model="tdEventoModelo.porconfirmar"
+							aria-label="Checkbox 1" ng-true-value="1" ng-false-value="0">
+						Fecha por confirmar </md-checkbox> </md-input-container>		 
+			 </div>
+			 
+			 <div layout="row" layout-aling="center start"> 
+			        <div class="letraenvoltura" ng-if="tdEventoModelo.editopcion < 2" flex="auto">
+			        <label class="letraLabel" flex style="width: 160px;">Vincular hoja de ruta</label>    
+			        <md-input-container md-no-float="true" class="md-block input-container-margen letraTexto" >
+			            <md-button class="md-raised botontamanio"
+						id="idbuscarcontrato" aria-label="Seleccionar HR"
+						ng-click="showdlgHRDialog($event)" ng-if="tdEventoModelo.editopcion < 2"> 
+						<span >Seleccionar HR</span>   
+						</md-button>
+			         </md-input-container>
+			         <md-input-container md-no-float="true" class="md-block input-container-margen letraTexto"
+							ng-if="tdEventoModelo.iddoc"
+							style="font-size: 12px;"> 
+							<div class="letraLabel" style="margin-top: 15px;">Hoja de Ruta: {{tdEventoModelo.numeroSid}}-{{tdEventoModelo.numeroAnioSid}}</div>
+							<md-button class="md-icon-button" id="idbuscarHRR" style="margin-top: 8px;"
+					         aria-label="Situaci&oacute;n de la HR" ng-click="situaciondemitramiteV2($event)">
+					         	<md-icon md-font-set="material-icons">visibility</md-icon>
+		         			</md-button> 
+						</md-input-container>
+			         
+			        </div>		 
+			 </div>
+			 
+			 <div layout="row" layout-aling="center start"> 
+			        <div class="letraenvoltura" ng-if="tdEventoModelo.editopcion < 2" flex="auto">
+			        <label class="letraLabel" flex style="width: 160px;">Tipo de evento</label>    
+					<md-input-container md-no-float="true" class="input-container-margen letraTexto" flex="85" style="width: 36%;">
+			            <md-select ng-model="tdEventoModelo.tipoevento" ng-change="changeTipoEventoo()" required
+			                       placeholder="Seleccionar tipo de evento"
+			                       >
+			             <md-option ng-repeat="item in listaPrtParametrosTipoEventoo" ng-value="item.id">
+			                 {{item.valor}}
+			             </md-option>
+			            </md-select>
+			         </md-input-container>
+			        </div>
+			         <div class="letraenvoltura" ng-if="tdEventoModelo.editopcion > 1" flex="auto">  
+			            <div class="letraLabel">Tipo de evento</div>
+			            <div class="letraTexto">{{tdEventoModelo.tipoeventoTxt}}</div>
+			         </div>			 
+			 </div>
+			 
+			 <div layout="row" layout-aling="center start"> 
+			        <div class="letraenvoltura" ng-if="tdEventoModelo.editopcion < 2" flex="auto">
+			        <label class="letraLabel" flex style="width: 160px;">Categor&iacute;as</label>    
+					<md-input-container md-no-float="true"
+						class="input-container-margen letraTexto" flex="85"
+						style="width: 36%;"> <md-chips
+						ng-model="msCategoriasSeleccionados" md-removable="true"
+						md-on-remove="removerMsCategorias($chip)"> <md-autocomplete
+						md-search-text="searchTextMsCategorias"
+						md-items="item in buscarMsCategorias(searchTextMsCategorias)"
+						md-item-text="item.descripcion"
+						placeholder="Escribe letras que contengan el nombre de la categoria">
+					<span md-highlight-text="searchTextMsCategorias">{{ item.categoria }}</span> </md-autocomplete> <md-chip-template>
+					<span>{{ $chip.categoria }}</span> </md-chip-template> </md-chips> <br />
+<!-- 					<h2>Categorias Seleccionadas</h2> -->
+	
+<!-- 					<ul> -->
+<!-- 						<li ng-repeat="grupo in msCategoriasSeleccionados">{{ grupo.idcategorias -->
+<!-- 							}}{{ grupo.categoria }}</li> -->
+<!-- 					</ul> -->
+					</md-input-container>
+			        </div>
+			         <div class="letraenvoltura" ng-if="tdEventoModelo.editopcion > 1" flex="auto">  
+			            <div class="letraLabel">T&iacute;tulo del evento</div>
+			            <div class="letraTexto">{{tdEventoModelo.titulo}}</div>
+			         </div>			 
+			 </div>
+			 
+			 <div layout="row" layout-aling="center start"> 
+			        <div class="letraenvoltura" ng-if="tdEventoModelo.editopcion < 2" flex="auto">
+			        <label class="letraLabel" flex style="width: 160px;">Modalidad</label>    
+			        <md-input-container md-no-float="true" class="input-container-margen letraTexto" flex="85" style="width: 85%;" >
+			        	<md-radio-group ng-model="tdEventoModelo.modalidad" aria-labelledby="favoriteFruit" layout="row">
+				            <md-radio-button value="PRESENCIAL" class="md-primary">Presencial</md-radio-button>
+				            <md-radio-button value="VIRTUAL">Virtual</md-radio-button>
+				         </md-radio-group>            
+			         </md-input-container>
+			        </div>
+			         <div class="letraenvoltura" ng-if="tdEventoModelo.editopcion > 1" flex="auto">  
+			            <div class="letraLabel">Modalidad</div>
+			            <div class="letraTexto">{{tdEventoModelo.modalidad}}</div>
+			         </div>			 
+			 </div>
+			 
+			 <div layout="row" layout-aling="center start"> 
+			        <div class="letraenvoltura" ng-if="tdEventoModelo.editopcion < 2" flex="auto">
+			        <label class="letraLabel" flex style="width: 160px;">Participantes</label>    
+					<md-input-container md-no-float="true"
+						class="input-container-margen letraTexto" flex="85"
+						style="width: 36%;"> <md-chips
+						ng-model="msUsuariosSeleccionados" md-removable="true"
+						md-on-remove="removerMsUsuarios($chip)"> <md-autocomplete
+						md-search-text="searchTextMsUsuarios"
+						md-items="item in buscarMsUsuarios(searchTextMsUsuarios)"
+						md-item-text="item.descripcion"
+						placeholder="Escribe letras que contengan el nombre del Usuario">
+					<span md-highlight-text="searchTextMsUsuarios">{{ item.nombreCompleto }}</span> </md-autocomplete> <md-chip-template>
+					<span>{{ $chip.nombreCompleto }}</span> </md-chip-template> </md-chips> <br />
+<!-- 					<h2>Usuarios Seleccionados</h2> -->
+	
+<!-- 					<ul> -->
+<!-- 						<li ng-repeat="grupo in msUsuariosSeleccionados">{{ grupo.idusuario -->
+<!-- 							}}{{ grupo.nombres }}</li> -->
+<!-- 					</ul> -->
+					</md-input-container>
+			        </div>
+			         <div class="letraenvoltura" ng-if="tdEventoModelo.editopcion > 1" flex="auto">  
+			            <div class="letraLabel">T&iacute;tulo del evento</div>
+			            <div class="letraTexto">{{tdEventoModelo.titulo}}</div>
+			         </div>			 
+			 </div>
+			
+
+			</md-content>
+		</fieldset>
+		
+		<!-- vbaldeon 08092023 inicio -->
+		<fieldset style="margin: 15px;">
+			<legend>Tareas de seguimiento</legend>
+			<md-content md-whiteframe="1" class="overflowEsconder"
+				md-colors="{background: 'background-A100'}">
+
+			<div layout="row" layout-aling="center start">
+				<md-input-container md-no-float="true"
+					class="input-container-margen letraTexto" flex="85"
+					style="width: 85%;"> <md-button
+					style="text-transform:capitalize !important;"
+					class="md-raised botontamanio" id="btnagregartarea"
+					aria-label="Agregar Tarea"
+					ng-click="showdlgAgregarTareaDialog($event)"
+					ng-if="tdEventoModelo.editopcion < 2"> <md-icon
+					md-font-set="material-icons">work</md-icon> <span>Agregar
+					Tarea</span> </md-button> </md-input-container>
+			</div>
+
+
+			<div layout="row">
+				<md-table-container>
+				<table md-progress="promise" md-row-select="options.rowSelection"
+					md-table multiple="{{options.multiSelect}}" ng-model="selected"
+					resize>
+					<thead id="tablewidth" md-head md-on-reorder="logOrder"
+						md-order="query.order" ng-if="!options.decapitate">
+
+						<tr class="md-table-head-label" md-row>
+							<th class="md-title ttamnumero" md-column><span>&nbsp;</span></th>
+							<th class="md-title " md-column md-order-by="iduserAtiendeTxt"><span>Responsable</span></th>
+							<th class="md-title " md-column md-order-by="idTareaTxt"><span>Tarea</span></th>
+							<th class="md-title " md-column md-order-by="fechaDerivacion"><span>Fecha
+									de env&iacute;o</span></th>
+							<th class="md-title " md-column md-order-by="tiempoestadia"><span>D&iacute;as</span></th>
+							<th class="md-title " md-column md-order-by="observacionHtml"><span>Comentarios</span></th>
+							<th class="md-title " md-column md-order-by="fechaAtencion"><span>Fecha
+									de atenci&oacute;n</span></th>
+							<th class="md-title " md-column md-order-by="tdAnexosBksss"><span>Documento
+									adjunto</span></th>
+							<th class="md-title ttamopciones" md-column><span>Opciones</span></th>
+						</tr>
+					<tbody md-body>
+						<tr class="primary md-table-cuerpo"
+							md-auto-select="options.autoSelect" md-on-select="logItem" md-row
+							md-select="dato" ng-disabled="dato.id > 0"
+							ng-repeat-start="dato in datoFlujoBk">
+
+							<td md-cell><md-button class="md-icon-button md-primary"
+									ng-click="removeFlujo($event,dato)"
+									ng-if="dato.idTareaTxt!=null"> <md-icon
+									md-font-set="material-icons">clear</md-icon> </md-button></td>
+							<td class="tdaa1 md-table-cuerpo" data-title="eliminar" md-cell>
+								<div layout="row">
+									<div class="letraenvoltura" style="width: 30%;">
+										<div class="letraTexto">{{dato.iduserAtiendeTxt}}</div>
+									</div>
+								</div>
+							</td>
+							<td class="tdaa1 md-table-cuerpo" data-title="idTareaTxt" md-cell>
+								<div layout="row">
+									<div class="letraenvoltura" style="width: 30%;">
+										<div class="letraTexto">{{dato.idTareaTxt}}</div>
+									</div>
+								</div>
+							</td>
+							<td class="tdaa1 md-table-cuerpo" data-title="fechaDerivacion"
+								md-cell>
+								<div layout="row">
+									<div class="letraenvoltura" style="width: 30%;">
+										<div class="letraTexto">{{dato.fechaDerivacion}}</div>
+									</div>
+
+								</div>
+							</td>
+							<td class="tdaa1 md-table-cuerpo" data-title="tiempoestadia"
+								md-cell>
+								<div layout="row">
+									<div class="letraenvoltura" style="width: 30%;">
+										<div class="letraTexto">{{dato.tiempoestadia}}</div>
+									</div>
+								</div>
+							</td>
+							<td class="tdaa1 md-table-cuerpo" data-title="observacionHtml"
+								md-cell>
+								<div layout="row">
+									<div class="letraenvoltura" style="width: 30%;">
+										<div class="letraTexto">{{dato.observacionHtml}}</div>
+									</div>
+								</div>
+							</td>
+							<td class="tdaa1 md-table-cuerpo" data-title="fechaAtencion"
+								md-cell>
+								<div layout="row">
+									<div class="letraenvoltura" style="width: 30%;">
+										<div class="letraTexto">{{dato.fechaAtencion}}</div>
+									</div>
+								</div>
+							</td>
+							<td class="tdaa1 md-table-cuerpo" data-title="tdAnexosBksss"
+								md-cell>
+								<div layout="row">
+									<div class="letraenvoltura" style="width: 30%;">
+										<div class="letraTexto" ng-if="dato.tdAnexosBksss!=null">
+
+											<table>
+												<tr>
+													<th><span><b>N.</b></span></th>
+													<th><span><b>Anexo</b></span></th>
+												</tr>
+												<tr ng-repeat="x in dato.tdAnexosBksss">
+													<td>{{ $index + 1 }}</td>
+													<td>
+														{{ x.filenameoriginal}}												
+													</td>
+												</tr>
+											</table>
+
+										</div>
+									</div>
+								</div>
+							</td>
+
+							<td class="tdaa1 md-table-cuerpo" data-title="Opciones" md-cell>
+								<md-button class="md-icon-button md-primary"
+									ng-click="enviarAlerta($event,dato)"
+									ng-if="dato.idTareaTxt!=null"> <md-icon
+									md-font-set="material-icons">mail</md-icon> </md-button>
+
+
+							</td>
+
+						</tr>
+						<tr class="secondary childidtdPersonalPersonal" ng-repeat-end></tr>
+					</tbody>
+
+				</table>
+				</md-table-container>
+			</div>
+
+
+			</md-content>
+		</fieldset>
+		<!-- vbaldeon 08092023 fin -->
+
+<fieldset style="margin: 15px;">
+<legend>Ingresar itinerario</legend>
+	<md-content md-whiteframe="1" class="overflowEsconder" md-colors="{background: 'background-A100'}">
+		<div layout="row" layout-aling="center start"> 
+              <div class="letraenvoltura" ng-if="tdEventoModelo.editopcion < 2" flex="auto">    
+              <md-input-container md-no-float="true" class="input-container-margen letraTexto" flex="85" style="width: 85%;" >
+                  <md-button class="md-raised botontamanio"
+		            id="agregarVuelo" aria-label="A&ntilde;adir vuelo"
+		            ng-click="showdlgAddVuelo($event)" ng-if="tdEventoModelo.editopcion < 2"> 
+		            <span >A&ntilde;adir vuelo</span>   
+		            </md-button>
+               </md-input-container>
+              </div>     
+       </div>
+       
+       <div layout="row" >
+				<md-table-container>
+				<table md-progress="promise" md-row-select="options.rowSelection"
+					md-table multiple="{{options.multiSelect}}" ng-model="selected"
+					resize>
+					<tbody md-body>
+						<tr class="primary tridtdPersonalPersonal md-table-cuerpo"
+							md-auto-select="options.autoSelect" md-on-select="logItem" md-row
+							md-select="dato" ng-disabled="dato.id > 0"
+							ng-repeat-start="dato in datosVuelos">
+
+<!-- 							<td md-cell>{{$index + 1}}</td> -->
+							<td class="tdaa1 md-table-cuerpo" data-title="Opciones" md-cell>
+								<md-button class="md-icon-button md-primary"
+									ng-click="removeDatosVuelos($event,dato)" ng-if="!dato.add">
+								<md-icon md-font-set="material-icons">cancel</md-icon> </md-button>
+							</td>
+							<td class="tdaa1 md-table-cuerpo" data-title="datosVueloss" md-cell>
+								<p style="font-size:13px;">
+									<span style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri';font-weight:700;">
+									Tipo de vuelo:{{dato.tipovuelo}}
+									</span>
+								</p>
+								<p style="font-size:13px;">
+									<span style="font-family:'Calibri';font-weight:400;">
+									Origen - destino:{{dato.origendestino}}
+									</span>
+								</p>
+								<p style="font-size:13px;">
+									<span style="font-family:'Calibri';font-weight:400;color:#8E8E8E;">
+									Salida:{{dato.fechaSaliIni}}|Llegada:{{dato.fechaLlegFin}}
+									</span>
+								</p>
+							</td>
+
+						</tr>
+						<tr class="secondary childidtdPersonalPersonal" ng-repeat-end></tr>
+					</tbody>
+
+				</table>
+				</md-table-container>
+			</div>
+	</md-content>
+</fieldset>
+</div>
+<div>&nbsp;</div>
+
+</div> <!-- FIN -->
+
+<!-- DIALOGOS --> 
+<div style="visibility: hidden">
+   <div class="md-dialog-container" id="idVerHR">
+    <md-dialog layout-padding style="min-width: 20% !important;">
+	    <md-content md-whiteframe="1" class="overflowEsconder" style="height: 32px;border-width: 1px;
+		    border-style: solid;
+		    border-color: rgba(204, 204, 204, 1);">
+	         <md-toolbar>
+	      <div class="md-toolbar-tools">
+
+	         <md-button class="md-icon-button" ng-click="cancel()" style="margin-left: -19px;margin-bottom: 11px;">
+	          <md-icon md-font-set="material-icons" aria-label="Close dialog" style="font-size: 29px;color: rgb(189,189,189);">chevron_left</md-icon>
+	        </md-button>    
+	        <span flex></span>
+	        <h2 style="font-family: 'Calibri Bold', 'Calibri Regular', 'Calibri';
+			    font-weight: 700;
+			    font-style: normal;
+			    font-size: 16px;
+			    color: #1E82AD;
+			    text-align: left;
+			    margin-right: 148px;
+			    margin-left: -18px;
+			    margin-bottom: 19px;">Visualizar Hoja de Ruta</h2>  
+	        <span flex></span> 
+	      </div>    
+	     </md-toolbar>
+	    </md-content>
+	    <div layout="row" layout-aling="center start" ng-if="expedienteModel.noexpediente" style="margin-top: 35px;">
+	    	<div style="font-family: 'Calibri Bold', 'Calibri Regular', 'Calibri';
+             font-weight: 700;margin-left: 25px;">{{expedienteModel.noexpediente}}</div>
+             <BR />
+	    	<div style="font-family: 'Calibri Bold', 'Calibri Regular', 'Calibri';
+			    font-weight: 700;margin-left: 15px;
+    			margin-top: 2px;
+			    font-size: 14px;
+			    color: #0C8E36;">{{expedienteModel.situacionactual}}</div>
+	    </div>
+	    <div layout="row" layout-aling="center start" ng-if="expedienteModel.noexpediente" style="padding-bottom: 0;">
+	    	<div style="font-family: 'Calibri Bold', 'Calibri Regular', 'Calibri';margin-left: 25px;
+			    font-weight: 700;
+			    color: #929292;
+			    font-size: 13px;">ASUNTO</div>
+	    </div>
+	    <div layout="row" layout-aling="center start" ng-if="expedienteModel.noexpediente" style="padding-top: 0;">
+	    	<div style="font-family: 'Calibri';margin-left: 25px;
+	ng-if="expedienteModel.noexpediente"size: 13px;">{{expedienteModel.asunto}}</div>
+	    </div>
+	    <div layout="row" layout-aling="center start" ng-if="expedienteModel.noexpediente" style="padding-bottom: 0;">
+	    	<div style="font-family: 'Calibri Bold', 'Calibri Regular', 'Calibri';margin-left: 25px;
+			    font-weight: 700;
+			    color: #929292;
+			    font-size: 13px;">TIPO Y NÚMERO DE DOCUMENTO</div>
+	    </div>
+	    <div layout="row" layout-aling="center start" ng-if="expedienteModel.noexpediente" style="padding-top: 0;">
+	    	<div style="font-family: 'Calibri';margin-left: 25px;
+			    font-weight: 400;
+			    font-size: 13px;">{{expedienteModel.tipodedocumento}} {{expedienteModel.numerodedocumento}}</div>
+	    </div>
+	    <div layout="row" layout-aling="center start" ng-if="expedienteModel.noexpediente" style="padding-bottom: 0;">
+	    	<div style="font-family: 'Calibri Bold', 'Calibri Regular', 'Calibri';
+			    font-weight: 700;margin-left: 25px;
+			    color: #929292;
+			    font-size: 13px;">REMITENTE</div>
+	    </div>
+	    <div layout="row" layout-aling="center start" ng-if="expedienteModel.noexpediente" style="padding-top: 0;">
+	    	<div style="font-family: 'Calibri';margin-left: 25px;
+			    font-weight: 400;
+			    font-size: 13px;">{{expedienteModel.remitente}}</div>
+	    </div>
+	    
+	     <table style="font-size: 13px;margin-left: 25px;" ng-if="expedienteModel.noexpediente"> 
+			 <tr>
+			  <th><span><b>NÂ°</b></span></th>
+			  <th><span><b>Anexo</b></span></th>
+			 </tr>
+			  <tr ng-repeat="x in expedienteModel.digitales">
+			    <td>{{ $index + 1 }}</td>
+			    <td>
+			    <!-- href="http://sisadm.mef.gob.pe:8280/tramite/r?anxctrln=487926" -->
+			    <a href="http://10.5.112.43:8080/tramite/r?anxhr={{x.idanexo}}" target="_blank_">
+			    <img src="resources/imagen/mime/{{x.mimename}}.gif" alt="{{ x.filenameoriginal }}" style="float:left;">
+			    {{ x.filenameoriginal }}
+			    </a>
+			    </td>
+			  </tr>
+			</table>
+    </md-dialog>
+   </div>   
+</div>
+
+<div style="visibility: hidden">
+   <div class="md-dialog-container" id="idVincularHR">
+    <md-dialog layout-padding style="min-width: 20% !important;">
+	    <md-content md-whiteframe="1" class="overflowEsconder" style="height: 32px;border-width: 1px;
+		    border-style: solid;
+		    border-color: rgba(204, 204, 204, 1);">
+	         <md-toolbar>
+	      <div class="md-toolbar-tools">
+
+	         <md-button class="md-icon-button" ng-click="cancel()" style="margin-left: -19px;margin-bottom: 11px;">
+	          <md-icon md-font-set="material-icons" aria-label="Close dialog" style="font-size: 29px;color: rgb(189,189,189);">chevron_left</md-icon>
+	        </md-button>    
+	        <span flex></span>
+	        <h2 style="font-family: 'Calibri Bold', 'Calibri Regular', 'Calibri';
+			    font-weight: 700;
+			    font-style: normal;
+			    font-size: 16px;
+			    color: #1E82AD;
+			    text-align: left;
+			    margin-right: 148px;
+			    margin-left: -18px;
+			    margin-bottom: 19px;">Vincular Hoja de Ruta</h2>  
+	        <span flex></span>
+	        <md-button class="md-raised botontamanio"
+	        			ng-click="agregarHR($event, expedienteModel)"
+						id="idagregarVuelo" aria-label="Agregar" style="border-width: 0px;
+					    position: absolute;
+					    left: 245px;
+					    top: -3px;
+					    width: 81px;
+					    height: 30px;
+					    font-family: 'Calibri Bold', 'Calibri Regular', 'Calibri';
+					    font-weight: 700;
+					    font-style: normal;
+					    font-size: 16px;
+					    color: #1E82AD;"> 
+						<span >Agregar</span>   
+			</md-button>  
+	      </div>    
+	     </md-toolbar>
+	    </md-content>
+	    <md-content md-whiteframe="1" class="overflowEsconder" md-colors="{background: 'background-A100'}">
+	         <div layout="row" layout-aling="center start" style="height: 40px;">
+	         <div class="letraenvoltura" style="display: contents;">
+	         	         	<md-input-container md-no-float="true" class="input-container-margen letraTexto" flex="85" style="width: 20%;" >
+	         			<md-icon md-font-set="material-icons">search</md-icon>
+			            <input type="text" md-maxlength="6" required name="numero HR" ng-model="tdEventoModelo.numeroSid"
+			                   placeholder="Numero HR" style="margin-left: -14px;font-size: 12px;">
+			     </md-input-container>
+			     <md-input-container md-no-float="true" class="input-container-margen letraTexto" flex="85" >
+	                   <input type="text" md-maxlength="4" required name="anio HR" ng-model="tdEventoModelo.numeroAnioSid"
+	                   placeholder="A&ntilde;o HR" style="margin-left: -14px;font-size: 12px;">
+			     </md-input-container>
+	                   <md-button class="md-raised botontamanio"
+					id="idbuscarcontrato" aria-label="Buscar HR"
+					ng-click="situaciondemitramite($event)" style="margin-top: 4px; margin-left: -5px;font-size: 10px;"> 
+					<span >Buscar</span>   
+				</md-button>      
+	         </div>
+	         </div>
+	    </md-content>
+	    <div layout="row" layout-aling="center start" ng-if="expedienteModel.noexpediente" style="margin-top: 35px;">
+	    	<div style="font-family: 'Calibri Bold', 'Calibri Regular', 'Calibri';
+             font-weight: 700;margin-left: 25px;">{{expedienteModel.noexpediente}}</div>
+             <BR />
+	    	<div style="font-family: 'Calibri Bold', 'Calibri Regular', 'Calibri';
+			    font-weight: 700;margin-left: 15px;
+    			margin-top: 2px;
+			    font-size: 14px;
+			    color: #0C8E36;">{{expedienteModel.situacionactual}}</div>
+	    </div>
+	    <div layout="row" layout-aling="center start" ng-if="expedienteModel.noexpediente" style="padding-bottom: 0;">
+	    	<div style="font-family: 'Calibri Bold', 'Calibri Regular', 'Calibri';margin-left: 25px;
+			    font-weight: 700;
+			    color: #929292;
+			    font-size: 13px;">ASUNTO</div>
+	    </div>
+	    <div layout="row" layout-aling="center start" ng-if="expedienteModel.noexpediente" style="padding-top: 0;">
+	    	<div style="font-family: 'Calibri';margin-left: 25px;
+	ng-if="expedienteModel.noexpediente"size: 13px;">{{expedienteModel.asunto}}</div>
+	    </div>
+	    <div layout="row" layout-aling="center start" ng-if="expedienteModel.noexpediente" style="padding-bottom: 0;">
+	    	<div style="font-family: 'Calibri Bold', 'Calibri Regular', 'Calibri';margin-left: 25px;
+			    font-weight: 700;
+			    color: #929292;
+			    font-size: 13px;">TIPO Y NÚMERO DE DOCUMENTO</div>
+	    </div>
+	    <div layout="row" layout-aling="center start" ng-if="expedienteModel.noexpediente" style="padding-top: 0;">
+	    	<div style="font-family: 'Calibri';margin-left: 25px;
+			    font-weight: 400;
+			    font-size: 13px;">{{expedienteModel.tipodedocumento}} {{expedienteModel.numerodedocumento}}</div>
+	    </div>
+	    <div layout="row" layout-aling="center start" ng-if="expedienteModel.noexpediente" style="padding-bottom: 0;">
+	    	<div style="font-family: 'Calibri Bold', 'Calibri Regular', 'Calibri';
+			    font-weight: 700;margin-left: 25px;
+			    color: #929292;
+			    font-size: 13px;">REMITENTE</div>
+	    </div>
+	    <div layout="row" layout-aling="center start" ng-if="expedienteModel.noexpediente" style="padding-top: 0;">
+	    	<div style="font-family: 'Calibri';margin-left: 25px;
+			    font-weight: 400;
+			    font-size: 13px;">{{expedienteModel.remitente}}</div>
+	    </div>
+	    
+	     <table style="font-size: 13px;margin-left: 25px;" ng-if="expedienteModel.noexpediente"> 
+			 <tr>
+			  <th><span><b>NÂ°</b></span></th>
+			  <th><span><b>Anexo</b></span></th>
+			 </tr>
+			  <tr ng-repeat="x in expedienteModel.digitales">
+			    <td>{{ $index + 1 }}</td>
+			    <td>
+			    <!-- href="http://sisadm.mef.gob.pe:8280/tramite/r?anxctrln=487926" -->
+			    <a href="http://10.5.112.43:8080/tramite/r?anxhr={{x.idanexo}}" target="_blank_">
+			    <img src="resources/imagen/mime/{{x.mimename}}.gif" alt="{{ x.filenameoriginal }}" style="float:left;">
+			    {{ x.filenameoriginal }}
+			    </a>
+			    </td>
+			  </tr>
+			</table>
+    </md-dialog>
+   </div>   
+</div>  
+
+<div style="visibility: hidden">
+   <div class="md-dialog-container" id="idAddVuelo">
+    <md-dialog layout-padding style="min-width: 20% !important;">
+	    <md-content md-whiteframe="1" class="overflowEsconder" style="height: 36px;">
+	         <md-toolbar>
+	      <div class="md-toolbar-tools">
+
+	         <md-button class="md-icon-button" ng-click="cancel()" style="margin-left: -19px;margin-bottom: 11px;">
+	          <md-icon md-font-set="material-icons" aria-label="Close dialog" style="font-size: 29px;color: rgb(189,189,189);">chevron_left</md-icon>
+	        </md-button>    
+	        <span flex></span>
+	        <h2 style="font-family: 'Calibri Bold', 'Calibri Regular', 'Calibri';
+			    font-weight: 700;
+			    font-style: normal;
+			    font-size: 16px;
+			    color: #1E82AD;
+			    text-align: left;
+			    margin-right: 200px;
+			    margin-left: -18px;
+			    margin-bottom: 19px;">A&ntilde;adir vuelo</h2>  
+	        <span flex></span>
+	        <md-button class="md-raised botontamanio"
+	        			ng-click="agregarVueloEvento($event)"
+						id="idagregarVuelo" aria-label="Agregar" style="border-width: 0px;
+					    position: absolute;
+					    left: 245px;
+					    top: -3px;
+					    width: 81px;
+					    height: 30px;
+					    font-family: 'Calibri Bold', 'Calibri Regular', 'Calibri';
+					    font-weight: 700;
+					    font-style: normal;
+					    font-size: 16px;
+					    color: #1E82AD;"> 
+						<span >Agregar</span>   
+			</md-button>  
+	      </div>     
+	     </md-toolbar>
+	    </md-content>
+	         <div layout="row" layout-aling="center start" >
+					<md-input-container md-no-float="true" class="input-container-margen letraTexto" flex="85" >
+			            <md-select ng-model="vueloModel.tipovuelo" ng-change="changeTipoVuelo()" required
+			                       placeholder="Tipo de vuelo"
+			                       >
+			             <md-option ng-repeat="item in listaPrtParametrosTipoVuelo" ng-value="item.id">
+			                 {{item.valor}}
+			             </md-option>
+			            </md-select>
+			         </md-input-container>
+	         </div>
+	         <div layout="row" layout-aling="center start" >
+	         		<md-input-container md-no-float="true" class="input-container-margen letraTexto" flex="85" style="width: 85%;" >
+			            <input type="text" md-maxlength="256" required name="titulo" ng-model="vueloModel.origendestino"
+			                   placeholder="Origen - destino"
+			                   >
+			            <div ng-messages="tdEventoForm.titulo.$error">
+			            <div ng-message="tdEventoForm.titulo.$error.required">Se requiere el Origen - destino</div>
+			            <div ng-message="tdEventoForm.titulo.$error.md-maxlength">El Origen - destino tiene un m&aacute;ximo de 256 caracteres.</div>
+			            </div>
+			         </md-input-container>
+	         </div>
+	         <div layout="row" layout-aling="center start" >
+					<md-input-container md-no-float="true" class="input-container-margen letraTexto" flex="85">
+			            <md-datepicker required ng-model="vueloModel.fechaSaliIni" 
+			                     md-placeholder="Seleccione la Fecha De Salida"
+			                     input-aria-describedby="datepicker-description"
+			                     input-aria-labelledby="datepicker-header ">
+			            </md-datepicker>
+			         </md-input-container>
+	         </div>
+	         <div layout="row" layout-aling="center start" >
+					<md-input-container md-no-float="true" class="input-container-margen letraTexto" flex="85">
+			            <md-datepicker required ng-model="vueloModel.fechaLlegFin" 
+			                     md-placeholder="Seleccione la Fecha De Llegada"
+			                     input-aria-describedby="datepicker-description"
+			                     input-aria-labelledby="datepicker-header ">
+			            </md-datepicker>
+			         </md-input-container>
+	         </div>
+    </md-dialog>
+   </div>   
+</div> 
+
+<!-- vbaldeon 08092023 inicio -->
+<div style="visibility: hidden">
+	<div class="md-dialog-container" id="idAgregarTarea">
+		<md-dialog layout-padding style="min-width: 20% !important;">
+		<md-content md-whiteframe="1" class="overflowEsconder"
+			style="height: 36px;"> <md-toolbar>
+		<div class="md-toolbar-tools">
+
+			<md-button class="md-icon-button" ng-click="cancel()"
+				style="margin-left: -19px;margin-bottom: 11px;"> <md-icon
+				md-font-set="material-icons" aria-label="Close dialog"
+				style="font-size: 29px;color: rgb(189,189,189);">chevron_left</md-icon>
+			</md-button>
+
+			<span flex></span>
+			<h2
+				style="font-family: 'Calibri Bold', 'Calibri Regular', 'Calibri'; font-weight: 700; font-style: normal; font-size: 16px; color: #1E82AD; text-align: left; margin-right: 200px; margin-left: -18px; margin-bottom: 19px;">Agregar
+				tarea</h2>
+			<span flex></span>
+			<md-button class="md-raised botontamanio"
+				ng-click="agregarFlujo($event)" id="idAgregarTarea"
+				aria-label="Agregar"
+				style="border-width: 0px;
+					    position: absolute;
+					    left: 245px;
+					    top: -3px;
+					    width: 81px;
+					    height: 30px;
+					    font-family: 'Calibri Bold', 'Calibri Regular', 'Calibri';
+					    font-weight: 700;
+					    font-style: normal;
+					    font-size: 16px;
+					    color: #1E82AD;">
+			<span>Agregar</span> </md-button>
+		</div>
+		</md-toolbar> </md-content>
+
+
+
+		<div layout="row" layout-aling="center start" ng-cloak>
+			<md-input-container md-no-float="true"
+				class="input-container-margen letraTexto" flex="85">
+			<md-select ng-model="tdEventoModelo.idTipoTarea" required
+				placeholder="Tipo de tarea"> <md-option
+				ng-repeat="item in listaPrtParametrosTipoTarea" ng-value="item.id">
+			{{item.valor}} </md-option> </md-select> </md-input-container>
+
+		</div>
+
+		<div layout="row" layout-aling="center start" ng-cloak>
+			<md-input-container md-no-float="true"
+				class="input-container-margen letraTexto" flex="85"
+				style="width: 85%;"> <md-chips
+				ng-model="gruposSeleccionados" md-removable="true"
+				md-on-remove="removerGrupo($chip)"> <md-autocomplete
+				md-search-text="searchText"
+				md-items="item in buscarGrupos(searchText)"
+				md-item-text="item.descripcion"
+				placeholder="Escribe letras que contengan el nombre del grupo"
+				md-selected-item="selectedGrupo"
+				md-selected-item-change="agregarGrupo(selectedGrupo)">
+			<span md-highlight-text="searchText">{{ item.grupo }}</span> </md-autocomplete> <md-chip-template>
+			<span>{{ $chip.grupo }}</span> </md-chip-template> </md-chips> <br />
+
+			</md-input-container>
+
+		</div>
+		<div layout="row" layout-aling="center start" ng-cloak>
+			<md-input-container md-no-float="true"
+				class="input-container-margen letraTexto" flex="85">
+
+			<md-list>
+			<p>Responsables</p>
+			<md-list-item ng-repeat="grupoFlujo in lstGrupoFlujo" class="noright">
+			<p>{{ grupoFlujo.iduserDestinoTxt }}</p>
+
+			<md-button class="md-icon-button md-accent" aria-label="Eliminar"
+				ng-click="eliminarGrupoFlujo(grupoFlujo)"> <md-icon
+				md-font-set="material-icons">clear</md-icon> </md-button> <md-checkbox
+				ng-model="grupoFlujo.flagPrincipal"
+				ng-change="seleccionarGrupoFlujoComoPrincipal(grupoFlujo)">Principal</md-checkbox>
+
+
+			</md-list-item> </md-list> </md-input-container>
+		</div>
+		</md-dialog-content> <md-dialog-actions layout="row" layout-align="center end">
+		</md-dialog-actions> </md-dialog>
+	</div>
+
+
+
+
+</div>
+<!-- vbaldeon 08092023 fin -->
+              
+
+<!-- FIN DIALOGOS -->
+<!-- Footer -->
+<div ng-include="'paginas/pie.html'"></div>
+<!-- Fin Footer -->

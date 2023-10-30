@@ -1,0 +1,95 @@
+<div flex="100" layout="column" layout-align="start stretch" class="margenPersonsa" 
+data-ng-init="editmsPaises()">
+
+<div layout="row" layout-aling="space-between start">
+     <div flex="auto" ng-if="nuevo">        
+        <p class="md-title">Nueva País</p>
+     </div>
+     <div flex="auto" ng-if="!nuevo">        
+        <p class="md-title">{{msPaisesModelo.paiNombre}}</p>
+     </div>
+     <div flex="auto" layout="row" layout-aling="end center" class="alingizquierda">
+     <md-button class="md-raised md-warn botontamanio" ng-click="cancelarMsPaises()">
+       <md-icon md-font-set="material-icons">undo</md-icon> 
+       <span ng-if="nuevo">Cancelar</span>
+       <span ng-if="!nuevo">Salir</span>       
+     </md-button>
+     <md-button  class="md-raised botontamanio" ng-click="salvarMsPaises($event)" ng-if="msPaisesModelo.editopcion==1">
+       <md-icon md-font-set="material-icons">save</md-icon> 
+       <span >Grabar</span>       
+     </md-button>
+     </div>
+</div>
+
+<div>
+<md-toolbar class="md-primary tolbarconrario" >
+    <div class="md-toolbar-tools" md-colors="{color: 'background-200'}">
+      <h2>Datos</h2>
+    </div>
+</md-toolbar>
+ <md-content md-whiteframe="1" class="overflowEsconder">
+<!--  <div layout="row" layout-aling="center start">  -->
+<!--         <md-input-container class="md-block input-container-margen" ng-if="msPaisesModelo.editopcion < 2"> -->
+<!--             <label>Número Iso</label> -->
+<!--             <input type="text" md-maxlength="10" required name="paiIsonum" ng-model="msPaisesModelo.paiIsonum"> -->
+<!--             <div ng-messages="msPaisesDlgForm.paiIsonum.$error"> -->
+<!--             <div ng-message="msPaisesDlgForm.paiIsonum.$error.required">Se requiere el Número Iso.</div> -->
+<!--             <div ng-message="msPaisesDlgForm.paiIsonum.$error.md-maxlength">El Número Iso tiene un maximo de 10 caracteres.</div> -->
+<!--             </div> -->
+<!--          </md-input-container> -->
+<!--          <div class="letraenvoltura" ng-if="msPaisesModelo.editopcion > 1">   -->
+<!--             <div class="letraLabel">Número Iso:</div> -->
+<!--             <div class="letraTexto">{{msPaisesModelo.paiIsonum}}</div> -->
+<!--          </div>			  -->
+<!--  </div><div layout="row" layout-aling="center start">  -->
+<!--         <md-input-container class="md-block input-container-margen" ng-if="msPaisesModelo.editopcion < 2"> -->
+<!--             <label>Código Iso V1</label> -->
+<!--             <input type="text" md-maxlength="5" required name="paiIso2" ng-model="msPaisesModelo.paiIso2"> -->
+<!--             <div ng-messages="msPaisesDlgForm.paiIso2.$error"> -->
+<!--             <div ng-message="msPaisesDlgForm.paiIso2.$error.required">Se requiere el Código Iso V1.</div> -->
+<!--             <div ng-message="msPaisesDlgForm.paiIso2.$error.md-maxlength">El Código Iso V1 tiene un maximo de 5 caracteres.</div> -->
+<!--             </div> -->
+<!--          </md-input-container> -->
+<!--          <div class="letraenvoltura" ng-if="msPaisesModelo.editopcion > 1">   -->
+<!--             <div class="letraLabel">Código Iso V1:</div> -->
+<!--             <div class="letraTexto">{{msPaisesModelo.paiIso2}}</div> -->
+<!--          </div>			  -->
+<!--  </div><div layout="row" layout-aling="center start">  -->
+<!--         <md-input-container class="md-block input-container-margen" ng-if="msPaisesModelo.editopcion < 2"> -->
+<!--             <label>Código Iso V2</label> -->
+<!--             <input type="text" md-maxlength="5" required name="paiIso3" ng-model="msPaisesModelo.paiIso3"> -->
+<!--             <div ng-messages="msPaisesDlgForm.paiIso3.$error"> -->
+<!--             <div ng-message="msPaisesDlgForm.paiIso3.$error.required">Se requiere el Código Iso V2.</div> -->
+<!--             <div ng-message="msPaisesDlgForm.paiIso3.$error.md-maxlength">El Código Iso V2 tiene un maximo de 5 caracteres.</div> -->
+<!--             </div> -->
+<!--          </md-input-container> -->
+<!--          <div class="letraenvoltura" ng-if="msPaisesModelo.editopcion > 1">   -->
+<!--             <div class="letraLabel">Código Iso V2:</div> -->
+<!--             <div class="letraTexto">{{msPaisesModelo.paiIso3}}</div> -->
+<!--          </div>			  -->
+<!--  </div> -->
+ <div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="msPaisesModelo.editopcion < 2">
+            <label>Nombre</label>
+            <input type="text" md-maxlength="100" required name="paiNombre" ng-model="msPaisesModelo.paiNombre">
+            <div ng-messages="msPaisesDlgForm.paiNombre.$error">
+            <div ng-message="msPaisesDlgForm.paiNombre.$error.required">Se requiere el Nombre.</div>
+            <div ng-message="msPaisesDlgForm.paiNombre.$error.md-maxlength">El Nombre tiene un maximo de 100 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="msPaisesModelo.editopcion > 1">  
+            <div class="letraLabel">Nombre:</div>
+            <div class="letraTexto">{{msPaisesModelo.paiNombre}}</div>
+         </div>			 
+ </div>
+</md-content>
+</div>
+<div>&nbsp;</div>
+
+</div> <!-- FIN -->
+
+<!-- DIALOGOS -->
+<!-- FIN DIALOGOS -->
+<!-- Footer -->
+<div ng-include="'paginas/pie.html'"></div>
+<!-- Fin Footer -->

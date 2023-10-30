@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html ng-app="MyApp">
+<head>
+<base href="/sisevent/" />
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+<meta name="viewport" content="width=device-width">
+
+<title>SISTEMA DE SEGUIMIENTO DE EVENTOS</title>
+<link href="resources/css/angular-material.css" rel="stylesheet" type="text/css" />
+<link href="resources/css/md-data-table.css" rel="stylesheet" type="text/css" />
+<link href="resources/font/robotFont.css" rel="stylesheet" type="text/css" />
+<link href="resources/font/material-icons.css" rel="stylesheet" type="text/css" />
+
+<link href="resources/appcss/titulo.css" rel="stylesheet" type="text/css" />
+<link href="resources/appcss/menucontrler.css" rel="stylesheet" type="text/css" />
+<link href="resources/appcss/cuerpo.css" rel="stylesheet" type="text/css" />
+<link href="resources/appcss/pie.css" rel="stylesheet" type="text/css" />
+<link href="resources/appcss/tree.css" rel="stylesheet" type="text/css" />
+
+<script src="resources/js/angular.js"></script>
+<script src="resources/js/angular-animate.js"></script>
+<script src="resources/js/angular-aria.js"></script>
+<script src="resources/js/angular-material.js"></script>
+<script src="resources/js/angular-messages.js"></script>
+<script src="resources/js/md-data-table.js"></script>
+<script src="resources/js/angular-route.js"></script>
+
+<script src="resources/appjs/appini.js"></script>
+<script src="resources/appjs/menucontrol.js"></script>
+<script src="resources/appjs/titulo.js"></script>
+<script src="resources/appjs/mantenimiento.js"></script>
+
+<style type="text/css">
+</style>
+</head>
+<body>
+<!-- Formulario -->
+  <form name="userForm">
+<!-- PG1 INI -->
+<div layout="column" layout-align="center stretch">
+ <!-- Header -->
+  <div ng-include="'paginas/titulo.html'"></div>
+ <!-- FIN Header --> 
+ <!-- Body -->
+ <!-- PG2 INI -->
+<div layout="row" layout-align="start stretch" flex="none"> 
+  <!-- Menu -->
+  <div ng-include="'paginas/menu.html'" layout="column" layout-align="space-between stretch" 
+  class="menu-barra" ng-cloak md-colors="{background: 'primary-700'}">
+  </div>  
+  <!-- FIN Menu -->  
+   
+  <!-- Tabla -->
+<div flex>
+  <div layout="column" layout-align="start stretch" class="margenPersonsa" 
+  ng-controller="ctrlMantenimiento" >
+   <md-toolbar class="md-primary tolbarconrario" >
+    <div class="md-toolbar-tools" md-colors="{color: 'background-200'}">
+      <h2>MANTENIMIENTO</h2>
+    </div>
+   </md-toolbar>
+   
+   <div layout="row" layout-aling="center start">
+   <md-button class="md-raised botontamanio" ng-click="ejecutarIniAccion($event)">
+       <md-icon md-font-set="material-icons">input</md-icon> 
+       <span >Data</span>       
+   </md-button>
+   <md-button class="md-raised botontamanio" ng-click="ejecutarIniCacheAccion($event)">
+       <md-icon md-font-set="material-icons">cached</md-icon> 
+       <span >Cache</span>       
+   </md-button>
+   <md-button class="md-raised botontamanio" ng-click="actualizarprogress($event)">
+       <md-icon md-font-set="material-icons">autorenew</md-icon> 
+       <span >Progress</span>       
+   </md-button>
+   <md-button class="md-raised botontamanio" ng-click="stopFight()">
+       <md-icon md-font-set="material-icons">block</md-icon> 
+       <span >Stop</span>       
+   </md-button>
+   </div>
+   
+   <div layout="row" layout-aling="center start">
+     <div class="letraLabel">{{progreso.iniLabel}}</div>
+     <div class="letraTexto">&nbsp;</div>
+     <div class="letraTexto">{{progreso.iniProgreso}}</div>
+     <div class="letraTexto">&nbsp;DE&nbsp;</div>
+     <div class="letraTexto">{{progreso.iniTotal}}</div>
+   </div>
+   <md-progress-linear md-mode="determinate" value="{{progreso.iniProgresoPorc}}"></md-progress-linear>
+    
+   <div layout="row" layout-aling="center start">
+   <md-input-container class="md-block input-container-margen">
+            <label>DATASOURCE</label>
+            <input type="text" name="datasource" ng-model="datasource">
+   </md-input-container>
+   <md-input-container class="md-block input-container-margen" flex>
+            <label>QUERYS</label>
+            <input type="text" name="query" ng-model="query">
+   </md-input-container>   
+   </div>  
+   
+   <div layout="row" layout-aling="center start">
+   <md-button class="md-raised botontamanioG" ng-click="ejecutarQuery($event)">
+       <md-icon md-font-set="material-icons">query_builder</md-icon> 
+       <span >Ejecute Qry</span>       
+   </md-button>
+   <md-button class="md-raised botontamanioG" ng-click="ejecutarApp($event)">
+       <md-icon md-font-set="material-icons">perm_data_setting</md-icon> 
+       <span >Ejecute App</span>       
+   </md-button>   
+   <md-button class="md-raised botontamanioG" ng-click="loadinicial($event)">
+       <md-icon md-font-set="material-icons">memory</md-icon> 
+       <span >Memoria Info</span>       
+   </md-button>
+   <md-button class="md-raised botontamanioG" ng-click="liberarmemoria($event)">
+       <md-icon md-font-set="material-icons">keyboard_return</md-icon> 
+       <span >Liberar</span>       
+   </md-button>
+   <md-button class="md-raised botontamanioG" ng-click="cargarParametroSistema($event)">
+       <md-icon md-font-set="material-icons">autorenew</md-icon> 
+       <span >Load Parametro</span>       
+   </md-button>
+   <md-button class="md-raised botontamanioG" ng-click="salvarParametroSistema($event)">
+       <md-icon md-font-set="material-icons">block</md-icon> 
+       <span >Save Parametro</span>       
+   </md-button>
+   </div>  
+   
+   <div layout="row" layout-aling="center start">
+      <div class="letraenvoltura">  
+            <div class="letraLabel">Resultado:</div>
+            <div class="letraTexto"><pre>{{resultado}}</pre></div>
+      </div>
+   </div> 
+   
+   <div layout="row" layout-aling="center start">
+      <div class="letraenvoltura">  
+            <div class="letraLabel">Memoria total:</div>
+            <div class="letraTexto">{{mantenimientoInicial.totalMemory}}</div>
+      </div>
+      <div class="letraenvoltura">  
+            <div class="letraLabel">Usuarios conectados:</div>
+            <div class="letraTexto">{{mantenimientoInicial.totalDeUduariosConectados}}</div>
+      </div>
+   </div>
+   <div layout="row" layout-aling="center start">
+      <div class="letraenvoltura">  
+            <div class="letraLabel">Memoria maxima:</div>
+            <div class="letraTexto">{{mantenimientoInicial.maxMemory}}</div>
+      </div>
+      <div class="letraenvoltura">  
+            <div class="letraLabel">Resultado de liberar la memoria:</div>
+            <div class="letraTexto">{{mantenimientoInicial.resultadoLiberarmemoria}}</div>
+      </div>
+   </div>
+   <div layout="row" layout-aling="center start">
+      <div class="letraenvoltura">  
+            <div class="letraLabel">Memoria libre:</div>
+            <div class="letraTexto">{{mantenimientoInicial.freeMemory}}</div>
+      </div>
+      <div class="letraenvoltura">  
+            <div class="letraLabel">&nbsp;</div>
+            <div class="letraTexto">&nbsp;</div>
+      </div>
+   </div>
+     
+  </div>
+  <div>&nbsp;</div>
+<!-- DIALOGOS -->
+<!-- FIN DIALOGOS -->
+<!-- Footer -->
+  <div ng-include="'paginas/pie.html'"></div>
+<!-- Fin Footer -->
+</div>
+  <!-- FIN Tabla -->  
+  <!-- Dialogo -->
+  <!-- FIN Dialogo -->
+   
+</div><!-- FIN PG2 INI --><!-- FIN Body -->
+</div><!-- FIN PG1 INI -->
+</form><!-- FIN Formulario --> 
+</body>
+</html>

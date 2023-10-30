@@ -1,0 +1,26 @@
+.ttamidunidad {
+	width: 40px !important;
+	max-width: 40px !important;
+	min-width: 20px !important; 
+}
+
+.ttamidubicaciones{
+	width: 10px !important;
+	max-width: 10px !important;
+	min-width: 10px !important; 
+}
+.ttamidevent{
+	width: 10px !important;
+	max-width: 10px !important;
+	min-width: 10px !important; 
+}
+.ttamubicacion{
+	width: 550px !important;
+	max-width: 550px !important;
+	min-width: 550px !important; 
+}
+.ttamestado{
+	width: 1px !important;
+	max-width: 1px !important;
+	min-width: 1px !important; 
+}

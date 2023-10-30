@@ -1,0 +1,134 @@
+<div flex="100" layout="column" layout-align="start stretch" class="margenForm" 
+data-ng-init="edittdItinerario()">
+
+<div layout="row" layout-aling="space-between start">
+     <div flex="auto" ng-if="nuevo">        
+        <p class="md-title">Nueva Itinerario De Los Vuelos A Realizarce</p>
+     </div>
+     <div flex="auto" ng-if="!nuevo">        
+        <p class="md-title">{{tdItinerarioModelo.XXX}}</p>
+     </div>
+     <div flex="auto" layout="row" layout-aling="end center" class="alingizquierda">
+     <md-button class="md-raised md-warn botontamanio" ng-click="cancelarTdItinerario()">
+       <md-icon md-font-set="material-icons">undo</md-icon> 
+       <span ng-if="nuevo">Cancelar</span>
+       <span ng-if="!nuevo">Salir</span>   
+     </md-button>
+     <md-button class="md-raised botontamanio" ng-click="salvarTdItinerario($event)" ng-if="tdItinerarioModelo.editopcion==1">
+       <md-icon md-font-set="material-icons">save</md-icon> 
+       <span >Grabar</span>       
+     </md-button>
+     </div>
+</div>
+
+<div layout="column">
+<md-toolbar class="md-primary tolbarconrario" >
+    <div class="md-toolbar-tools" md-colors="{color: 'background-200'}">
+      <h2>Datos</h2>
+    </div>
+</md-toolbar>
+ <md-content md-whiteframe="1" class="overflowEsconder">
+ <div layout="row" layout-aling="center start">       
+        <md-input-container class="md-block input-container-margen" ng-if="tdItinerarioModelo.editopcion < 2" flex="auto">
+            <label>Número</label>
+            <md-select ng-model="tdItinerarioModelo.idevent" ng-change="changeIdevent()" required>
+             <md-option ng-repeat="item in listaTdEventoIdevent" ng-value="item.id">
+                 {{item.valor}}
+             </md-option>
+            </md-select>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdItinerarioModelo.editopcion > 1">  
+            <div class="letraLabel">Número:</div>
+            <div class="letraTexto">{{tdItinerarioModelo.ideventTxt}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start">       
+        <md-input-container class="md-block input-container-margen" ng-if="tdItinerarioModelo.editopcion < 2" flex="auto">
+            <label>País</label>
+            <md-select ng-model="tdItinerarioModelo.codpais" ng-change="changeCodpais()" required>
+             <md-option ng-repeat="item in listaCodpais" ng-value="item.id">
+                 {{item.valor}}
+             </md-option>
+            </md-select>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdItinerarioModelo.editopcion > 1">  
+            <div class="letraLabel">País:</div>
+            <div class="letraTexto">{{tdItinerarioModelo.codpaisTxt}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdItinerarioModelo.editopcion < 2" flex="auto">
+            <label>Departamento</label>
+            <input type="text" md-maxlength="2" required name="coddpto" ng-model="tdItinerarioModelo.coddpto">
+            <div ng-messages="tdItinerarioForm.coddpto.$error">
+            <div ng-message="tdItinerarioForm.coddpto.$error.required">Se requiere el Departamento.</div>
+            <div ng-message="tdItinerarioForm.coddpto.$error.md-maxlength">El Departamento tiene un m&aacute;ximo de 2 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdItinerarioModelo.editopcion > 1">  
+            <div class="letraLabel">Departamento:</div>
+            <div class="letraTexto">{{tdItinerarioModelo.coddpto}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdItinerarioModelo.editopcion < 2" flex="auto">
+            <label>Provincia</label>
+            <input type="text" md-maxlength="2" required name="codprov" ng-model="tdItinerarioModelo.codprov">
+            <div ng-messages="tdItinerarioForm.codprov.$error">
+            <div ng-message="tdItinerarioForm.codprov.$error.required">Se requiere el Provincia.</div>
+            <div ng-message="tdItinerarioForm.codprov.$error.md-maxlength">El Provincia tiene un m&aacute;ximo de 2 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdItinerarioModelo.editopcion > 1">  
+            <div class="letraLabel">Provincia:</div>
+            <div class="letraTexto">{{tdItinerarioModelo.codprov}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdItinerarioModelo.editopcion < 2" flex="auto">
+            <label></label>
+            <textarea ng-model="tdItinerarioModelo.origendestino" md-maxlength="550" rows="5" md-select-on-focus></textarea>
+            <div ng-messages="tdItinerarioForm.origendestino.$error">
+            <div ng-message="tdItinerarioForm.origendestino.$error.required">Se requiere el .</div>
+            <div ng-message="tdItinerarioForm.origendestino.$error.md-maxlength">El  tiene un m&aacute;ximo de 550 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdItinerarioModelo.editopcion > 1">  
+            <div class="letraLabel">:</div>
+            <div class="letraTexto">{{tdItinerarioModelo.origendestino}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdItinerarioModelo.editopcion < 2" flex="auto">
+            <label></label>
+            <input type="text" md-maxlength="7" required name="fechaSaliIni" ng-model="tdItinerarioModelo.fechaSaliIni">
+            <div ng-messages="tdItinerarioForm.fechaSaliIni.$error">
+            <div ng-message="tdItinerarioForm.fechaSaliIni.$error.required">Se requiere el .</div>
+            <div ng-message="tdItinerarioForm.fechaSaliIni.$error.md-maxlength">El  tiene un m&aacute;ximo de 7 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdItinerarioModelo.editopcion > 1">  
+            <div class="letraLabel">:</div>
+            <div class="letraTexto">{{tdItinerarioModelo.fechaSaliIni}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdItinerarioModelo.editopcion < 2" flex="auto">
+            <label></label>
+            <input type="text" md-maxlength="7" required name="fechaLlegFin" ng-model="tdItinerarioModelo.fechaLlegFin">
+            <div ng-messages="tdItinerarioForm.fechaLlegFin.$error">
+            <div ng-message="tdItinerarioForm.fechaLlegFin.$error.required">Se requiere el .</div>
+            <div ng-message="tdItinerarioForm.fechaLlegFin.$error.md-maxlength">El  tiene un m&aacute;ximo de 7 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdItinerarioModelo.editopcion > 1">  
+            <div class="letraLabel">:</div>
+            <div class="letraTexto">{{tdItinerarioModelo.fechaLlegFin}}</div>
+         </div>			 
+ </div>
+</md-content>
+</div>
+<div>&nbsp;</div>
+
+</div> <!-- FIN -->
+
+<!-- DIALOGOS --> 
+
+<!-- FIN DIALOGOS -->
+<!-- Footer -->
+<div ng-include="'paginas/pie.html'"></div>
+<!-- Fin Footer -->

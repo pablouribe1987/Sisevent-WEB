@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="SISEVENT-WEB-0.1">
+        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <wb-resource deploy-path="/WEB-INF/lib" source-path="/target/SISEVENT-WEB-0.1/WEB-INF/lib"/>
+        <dependent-module archiveName="SISEVENT-BUSSINES-0.1.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/SISEVENT-BUSSINES/SISEVENT-BUSSINES">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="Negociate-0.0.3.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/Widfly.Negociate/Widfly.Negociate">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="context-root" value="SISEVENT-WEB"/>
+        <property name="java-output-path" value="/SISEVENT-WEB/target/classes"/>
+    </wb-module>
+</project-modules>

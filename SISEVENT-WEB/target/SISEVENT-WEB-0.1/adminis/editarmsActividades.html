@@ -1,0 +1,95 @@
+<div flex="100" layout="column" layout-align="start stretch" class="margenForm" 
+data-ng-init="editmsActividades()">
+
+<div layout="row" layout-aling="space-between start">
+     <div flex="auto" ng-if="nuevo">        
+        <p class="md-title">Nueva Almacena Las Actividades Que Se Aplicarán En Las Tareas</p>
+     </div>
+     <div flex="auto" ng-if="!nuevo">        
+        <p class="md-title">{{msActividadesModelo.XXX}}</p>
+     </div>
+     <div flex="auto" layout="row" layout-aling="end center" class="alingizquierda">
+     <md-button class="md-raised md-warn botontamanio" ng-click="cancelarMsActividades()">
+       <md-icon md-font-set="material-icons">undo</md-icon> 
+       <span ng-if="nuevo">Cancelar</span>
+       <span ng-if="!nuevo">Salir</span>   
+     </md-button>
+     <md-button class="md-raised botontamanio" ng-click="salvarMsActividades($event)" ng-if="msActividadesModelo.editopcion==1">
+       <md-icon md-font-set="material-icons">save</md-icon> 
+       <span >Grabar</span>       
+     </md-button>
+     </div>
+</div>
+
+<div layout="column">
+<md-toolbar class="md-primary tolbarconrario" >
+    <div class="md-toolbar-tools" md-colors="{color: 'background-200'}">
+      <h2>Datos</h2>
+    </div>
+</md-toolbar>
+ <md-content md-whiteframe="1" class="overflowEsconder">
+ <div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="msActividadesModelo.editopcion < 2" flex="auto">
+            <label>Tarea</label>
+            <input type="text" md-maxlength="10" required name="idtareas" ng-model="msActividadesModelo.idtareas">
+            <div ng-messages="msActividadesForm.idtareas.$error">
+            <div ng-message="msActividadesForm.idtareas.$error.required">Se requiere el Tarea.</div>
+            <div ng-message="msActividadesForm.idtareas.$error.md-maxlength">El Tarea tiene un m&aacute;ximo de 10 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="msActividadesModelo.editopcion > 1">  
+            <div class="letraLabel">Tarea:</div>
+            <div class="letraTexto">{{msActividadesModelo.idtareas}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="msActividadesModelo.editopcion < 2" flex="auto">
+            <label>Text</label>
+            <input type="text" md-maxlength="150" required name="actividad" ng-model="msActividadesModelo.actividad">
+            <div ng-messages="msActividadesForm.actividad.$error">
+            <div ng-message="msActividadesForm.actividad.$error.required">Se requiere el Text.</div>
+            <div ng-message="msActividadesForm.actividad.$error.md-maxlength">El Text tiene un m&aacute;ximo de 150 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="msActividadesModelo.editopcion > 1">  
+            <div class="letraLabel">Text:</div>
+            <div class="letraTexto">{{msActividadesModelo.actividad}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="msActividadesModelo.editopcion < 2" flex="auto">
+            <label>Campos</label>
+            <input type="text" md-maxlength="500" required name="camposallenar" ng-model="msActividadesModelo.camposallenar">
+            <div ng-messages="msActividadesForm.camposallenar.$error">
+            <div ng-message="msActividadesForm.camposallenar.$error.required">Se requiere el Campos.</div>
+            <div ng-message="msActividadesForm.camposallenar.$error.md-maxlength">El Campos tiene un m&aacute;ximo de 500 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="msActividadesModelo.editopcion > 1">  
+            <div class="letraLabel">Campos:</div>
+            <div class="letraTexto">{{msActividadesModelo.camposallenar}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="msActividadesModelo.editopcion < 2" flex="auto">
+            <label>Que Se Debe Cargar</label>
+            <input type="text" md-maxlength="4" required name="numerodigitales" ng-model="msActividadesModelo.numerodigitales">
+            <div ng-messages="msActividadesForm.numerodigitales.$error">
+            <div ng-message="msActividadesForm.numerodigitales.$error.required">Se requiere el Que Se Debe Cargar.</div>
+            <div ng-message="msActividadesForm.numerodigitales.$error.md-maxlength">El Que Se Debe Cargar tiene un m&aacute;ximo de 4 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="msActividadesModelo.editopcion > 1">  
+            <div class="letraLabel">Que Se Debe Cargar:</div>
+            <div class="letraTexto">{{msActividadesModelo.numerodigitales}}</div>
+         </div>			 
+ </div>
+</md-content>
+</div>
+<div>&nbsp;</div>
+
+</div> <!-- FIN -->
+
+<!-- DIALOGOS --> 
+
+<!-- FIN DIALOGOS -->
+<!-- Footer -->
+<div ng-include="'paginas/pie.html'"></div>
+<!-- Fin Footer -->

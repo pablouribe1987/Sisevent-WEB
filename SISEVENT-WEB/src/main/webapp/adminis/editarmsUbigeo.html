@@ -1,0 +1,134 @@
+<div flex="100" layout="column" layout-align="start stretch" class="margenPersonsa" 
+data-ng-init="editmsUbigeo()">
+
+<div layout="row" layout-aling="space-between start">
+     <div flex="auto" ng-if="nuevo">        
+        <p class="md-title">Nuevo Ubigeo</p>
+     </div>
+     <div flex="auto" ng-if="!nuevo">        
+        <p class="md-title">{{msUbigeoModelo.nombre}}</p>
+     </div>
+     <div flex="auto" layout="row" layout-aling="end center" class="alingizquierda">
+     <md-button class="md-raised md-warn botontamanio" ng-click="cancelarMsUbigeo()">
+       <md-icon md-font-set="material-icons">undo</md-icon> 
+       <span ng-if="nuevo">Cancelar</span>
+       <span ng-if="!nuevo">Salir</span>         
+     </md-button>
+     <md-button  class="md-raised botontamanio" ng-click="salvarMsUbigeo($event)" ng-if="msUbigeoModelo.editopcion==1">
+       <md-icon md-font-set="material-icons">save</md-icon> 
+       <span >Grabar</span>       
+     </md-button>
+     </div>
+</div>
+
+<div>
+<md-toolbar class="md-primary tolbarconrario" >
+    <div class="md-toolbar-tools" md-colors="{color: 'background-200'}">
+      <h2>Datos Del UBIGEO - {{stipo()}}</h2>
+    </div>
+</md-toolbar>
+ <md-content md-whiteframe="1" class="overflowEsconder">
+ 
+  <div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="msUbigeoModelo.editopcion == 1 && tipo>1">
+            <label>Departamento</label>
+<!--             <input type="number" md-maxlength="2" name="coddpto" ng-model="msUbigeoModelo.id.coddpto"> -->
+<!--             <div ng-messages="msUbigeoDlgForm.coddpto.$error"> -->
+<!--             <div ng-message="msUbigeoDlgForm.coddpto.$error.md-maxlength">El Orden tiene un maximo de 2 caracteres.</div> -->
+              <md-select ng-model="msUbigeoModelo.id.coddpto" ng-change="changeCoddpto()">
+               <md-option ng-value="0">SIN DEPARTAMENTO</md-option>
+               <md-option ng-repeat="item in listaCoddptoss" ng-value="item.id">
+                {{ item.valor }}
+               </md-option>
+              </md-select>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="msUbigeoModelo.editopcion == 2">  
+            <div class="letraLabel">Departamento:</div>
+            <div class="letraTexto">{{msUbigeoModelo.coddptoTxt}}</div>
+         </div>
+         
+         <md-input-container class="md-block input-container-margen" ng-if="msUbigeoModelo.editopcion == 1 && tipo>2">
+<!--             <label>Código Prv.</label> -->
+<!--             <input type="number" md-maxlength="2" name="codprov" ng-model="msUbigeoModelo.id.codprov"> -->
+<!--             <div ng-messages="msUbigeoDlgForm.codprov.$error"> -->
+<!--             <div ng-message="msUbigeoDlgForm.codprov.$error.md-maxlength">El Orden tiene un maximo de 2 caracteres.</div> -->
+<!--             </div> -->
+              <label>Provincia</label>
+              <md-select ng-model="msUbigeoModelo.id.codprov" ng-change="changeCodprov()">
+               <md-option ng-value="0">SIN PROVINCIA</md-option>
+               <md-option ng-repeat="item in listaCodprovs" ng-value="item.id">
+                {{ item.valor }}
+               </md-option>
+              </md-select>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="msUbigeoModelo.editopcion == 2">  
+            <div class="letraLabel">Provincia:</div>
+            <div class="letraTexto">{{msUbigeoModelo.codprovTxt}}</div>
+         </div>
+                   
+         <md-input-container class="md-block input-container-margen" ng-if="msUbigeoModelo.editopcion == 1 && tipo>3">
+<!--             <label>Distrito:</label> -->
+<!--             <input type="number" md-maxlength="2" name="coddist" ng-model="msUbigeoModelo.id.coddist"> -->
+<!--             <div ng-messages="msUbigeoDlgForm.coddist.$error"> -->
+<!--             <div ng-message="msUbigeoDlgForm.coddist.$error.md-maxlength">El Orden tiene un maximo de 2 caracteres.</div> -->
+<!--             </div> -->
+           <label>Distrito</label>
+              <md-select ng-model="msUbigeoModelo.id.coddist">
+               <md-option ng-repeat="item in listaCoddists" ng-value="item.id">
+                {{ item.valor }}
+               </md-option>
+              </md-select>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="msUbigeoModelo.editopcion == 2">  
+            <div class="letraLabel">Distrito:</div>
+            <div class="letraTexto">{{msUbigeoModelo.coddistTxt}}</div>
+         </div>          
+ </div>
+ 
+ <div layout="row" layout-aling="center start">
+         <md-input-container class="md-block input-container-margen" ng-if="msUbigeoModelo.editopcion == 1 && tipo==1">
+            <label>Código de Departamento:</label>
+            <input type="number" md-maxlength="2" name="coddpto" ng-model="msUbigeoModelo.id.coddpto">
+            <div ng-messages="msUbigeoDlgForm.coddpto.$error">
+            <div ng-message="msUbigeoDlgForm.coddpto.$error.md-maxlength">El Orden tiene un maximo de 2 caracteres.</div>
+            </div>
+         </md-input-container>
+         <md-input-container class="md-block input-container-margen" ng-if="msUbigeoModelo.editopcion == 1 && tipo==2">
+            <label>Código de Provincia:</label>
+            <input type="number" md-maxlength="2" name="codprov" ng-model="msUbigeoModelo.id.codprov">
+            <div ng-messages="msUbigeoDlgForm.codprov.$error">
+            <div ng-message="msUbigeoDlgForm.codprov.$error.md-maxlength">El Orden tiene un maximo de 2 caracteres.</div>
+            </div>
+         </md-input-container>
+         <md-input-container class="md-block input-container-margen" ng-if="msUbigeoModelo.editopcion == 1 && tipo==3">
+            <label>Código de Distrito:</label>
+            <input type="number" md-maxlength="2" name="coddist" ng-model="msUbigeoModelo.id.coddist">
+            <div ng-messages="msUbigeoDlgForm.coddist.$error">
+            <div ng-message="msUbigeoDlgForm.coddist.$error.md-maxlength">El Orden tiene un maximo de 2 caracteres.</div>
+            </div>           
+         </md-input-container>        
+        <md-input-container class="md-block input-container-margen" ng-if="msUbigeoModelo.editopcion < 2">
+            <label>Nombre</label>
+            <input type="text" md-maxlength="100" required name="nombre" ng-model="msUbigeoModelo.nombre">
+            <div ng-messages="msUbigeoDlgForm.nombre.$error">
+            <div ng-message="msUbigeoDlgForm.nombre.$error.required">Se requiere el Nombre.</div>
+            <div ng-message="msUbigeoDlgForm.nombre.$error.md-maxlength">El Nombre tiene un maximo de 100 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="msUbigeoModelo.editopcion > 1">  
+            <div class="letraLabel">Nombre:</div>
+            <div class="letraTexto">{{msUbigeoModelo.nombre}}</div>
+         </div>			 
+ </div> 
+</md-content>
+</div>
+<div>&nbsp;</div>
+
+</div> <!-- FIN -->
+
+<!-- DIALOGOS -->
+<!-- FIN DIALOGOS -->
+<!-- Footer -->
+<div ng-include="'paginas/pie.html'"></div>
+<!-- Fin Footer -->

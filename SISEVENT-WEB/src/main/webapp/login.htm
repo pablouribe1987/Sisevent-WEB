@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <title>SISTEMA DE SEGUIMIENTO DE EVENTOS - LogIn</title>
+    <base href="/sisevent/" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="expires" content="-1">
+    <link href="resources/appcss/styles-login.css" type="text/css" rel="stylesheet"/>
+    <script> 
+  	  var enviando = true;
+      function enviar(){
+          if(enviando){
+			enviando = false;
+			document.j_security_check.submit();
+            }
+        }
+    </script> 
+  </head>
+ <body>
+    <div id="base" >
+	<form method="post" action="j_security_check" enctype="application/x-www-form-urlencoded" name="j_security_check" target="_self" >
+      
+      <div id="u0" >
+        <div id="u0_state0" data-label="State1">
+          <div id="u0_state0" >
+            <!-- Unnamed (Rectangle) -->
+            <div id="u1" >
+              <div id="u1_div" ></div>
+              <div id="u1_text" >
+                <p>
+                Copyright &copy; 2023 &reg;
+                MEF. 
+                Todos los Derechos Reservados
+                Direcci&oacuten; Jr. Lampa 594, Cercado de Lima, Lima - Per&uacute; Central: (511) 6105930
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+ <div id="u2_state1" data-label="State2" style="">
+      </div>
+      <div id="u2" >
+      
+        <div id="u2_state0" data-label="State1" style="">
+          <div id="u2_state0" >
+ 
+			<div id="u1" >
+              <div id="ub1_div" ></div>
+              <div id="ub5_div" style="background-color: #127cb1;">
+              <hr id="ub5_hr" size="1" color="#127cb1;"> 
+              </div>
+            </div>
+            
+<!--             <div id="u3" class=" box_1"> -->
+<!--               <img id="u3_img" src="resources/imagen/u3.png"/> -->
+<!--             </div> -->
+
+            <!-- LogIn (Group) -->
+            <div id="u4"  data-label="LogIn" data-left="19" data-top="18" data-width="323" data-height="516">
+
+              <div id="u5" >
+                <div id="u5_div" ></div>
+              </div>
+
+              <div id="u6" >
+                <div id="u6_div" ></div>
+              </div>
+
+              <div id="u7">
+                <img id="u7_img" src="resources/imagen/u9.png"/>
+              </div>
+
+              <!-- Unnamed (Image) -->
+              <div id="u8">
+                <img id="u8_img" src="resources/imagen/u10.png"/>
+              </div>
+
+              <!-- Button (Rectangle) -->
+              <div id="u9" data-label="Button" onclick="enviar();">
+                <img id="u9_img" src="resources/imagen/button_u9.png" onclick="enviar();" />
+                <div id="u9_text" onclick="enviar();">
+                  <p><span onclick="enviar();" style="cursor: hand !important;">Ingresar</span></p>
+                </div>
+              </div>
+
+               <%
+            Integer intentos = (Integer)session.getAttribute("j_intentos");
+            if(intentos!=null && intentos.intValue()>2 ){ %>
+              <div id="u6_1" >
+                <div id="u6_1_div" ></div>
+              </div>
+              <div id="u13_1" data-label="Usuario">
+                <input id="u13_1_input" type="text" autocomplete="off" name="j_captcha" placeholder="Valor de la imagen"/>
+              </div>
+              <div id="u8_1">
+                <img id="u8_1_img" src="<%= request.getContextPath() %>/captcha_rd.png"/>
+              </div>
+              <div id="u10_1"  data-label="Text">
+                <div id="u10_1_div" ></div>
+                <div id="u10_1_text" >
+                  <p><span><% 
+               if(session.getAttribute("ERROR")!=null){
+                  out.println(session.getAttribute("ERROR"));
+               }
+               %></span></p>
+                </div>
+              </div>
+              <% } %>
+
+              <!-- Text (Rectangle) -->
+              <div id="u10"  data-label="Text" style="display:none; visibility: hidden">
+                <div id="u10_div" ></div>
+                <div id="u10_text" >
+                  <p><span style="text-decoration:underline;">He olvidado mi contrase&ntilde;a!</span></p>
+                </div>
+              </div>
+
+              <div id="u11"  style="display:none; visibility:hidden">
+                <img id="u11_img" src="resources/imagen/u11.png"/>
+              </div>
+
+              <div id="u12" style="background-color: #127cb1; ">
+                <p style="text-align:center;"><span style="font-family: 'Calibri Bold', 'Calibri Regular', 'Calibri';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 26px;
+    color: #FFFFFF;">SISTEMA DE PREPARACI&Oacute;N DE EVENTOS</span></p>               
+              </div>
+ 
+              <!-- User (Text Field) -->
+              <div id="u13" data-label="Usuario">
+                <input id="u13_input" type="text" autocomplete="off" name="j_username" placeholder="Usuario" value=""/>
+              </div>
+
+              <!-- Password (Text Field) -->
+              <div id="u14" data-label="Password">
+                <input id="u14_input" type="password"  autocomplete="new-password" name="j_password" placeholder="Contrase&ntilde;a" value=""/>
+              </div>
+
+              <!-- Unnamed (Rectangle) -->
+              <div id="u15" >
+                <img id="u15_img" src="resources/imagen/u15.png"/>
+                <div id="u15_text" >
+                  <p><span>SISEVENT</span></p>
+                </div>
+              </div>
+              <!-- Unnamed (Rectangle) -->
+              <div id="u24" >
+                <div id="u24_text" >
+                  <p><span>V1.0</span></p>
+                </div>
+              </div>
+            </div>
+
+            <div id="u16"  data-label="Pass" style="display:none; visibility: hidden" data-left="0" data-top="0" data-width="0" data-height="0">
+
+              <div id="u17"  data-label="Button">
+               
+                <button type="submit" tabindex="-1">Enviar</button>
+              </div>
+
+              <div id="u18" >
+                <div id="u18_div" ></div>
+              </div>
+
+              <!-- Email (Text Field) -->
+              <div id="u19" data-label="Email">
+                <input id="u19_input" type="email" value=""/>
+              </div>
+
+              <div id="u20" data-label="Text">
+                <div id="u20_div" ></div>
+                <div id="u20_text" >
+                  <p><span>Para ayudarte a reestablecer tu contrase&ntilde;a escribe tu cuenta de correo electr&oacute;nico:</span></p>
+                </div>
+              </div>
+
+              <div id="u21" data-label="Text">
+                <div id="u21_div" ></div>
+                <div id="u21_text" >
+                  <p><span><a href="mailto:stramite@mef.gob.pe">Recupera tu contrase&ntilde;a</a></span></p>
+                </div>
+              </div>
+
+              <div id="u22" >
+                <img id="u22_img" src="resources/imagen/u22.png"/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+    </div>
+  </body>
+</html>

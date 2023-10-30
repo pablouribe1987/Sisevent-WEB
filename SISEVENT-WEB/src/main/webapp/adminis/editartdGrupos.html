@@ -1,0 +1,56 @@
+<div flex="100" layout="column" layout-align="start stretch" class="margenForm" 
+data-ng-init="edittdGrupos()">
+
+<div layout="row" layout-aling="space-between start">
+     <div flex="auto" ng-if="nuevo">        
+        <p class="md-title">Nueva Grupos De Flujos Que Se Asignan A Los Eventos</p>
+     </div>
+     <div flex="auto" ng-if="!nuevo">        
+        <p class="md-title">{{tdGruposModelo.XXX}}</p>
+     </div>
+     <div flex="auto" layout="row" layout-aling="end center" class="alingizquierda">
+     <md-button class="md-raised md-warn botontamanio" ng-click="cancelarTdGrupos()">
+       <md-icon md-font-set="material-icons">undo</md-icon> 
+       <span ng-if="nuevo">Cancelar</span>
+       <span ng-if="!nuevo">Salir</span>   
+     </md-button>
+     <md-button class="md-raised botontamanio" ng-click="salvarTdGrupos($event)" ng-if="tdGruposModelo.editopcion==1">
+       <md-icon md-font-set="material-icons">save</md-icon> 
+       <span >Grabar</span>       
+     </md-button>
+     </div>
+</div>
+
+<div layout="column">
+<md-toolbar class="md-primary tolbarconrario" >
+    <div class="md-toolbar-tools" md-colors="{color: 'background-200'}">
+      <h2>Datos</h2>
+    </div>
+</md-toolbar>
+ <md-content md-whiteframe="1" class="overflowEsconder">
+ <div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdGruposModelo.editopcion < 2" flex="auto">
+            <label>Grupo</label>
+            <input type="text" md-maxlength="150" required name="grupo" ng-model="tdGruposModelo.grupo">
+            <div ng-messages="tdGruposForm.grupo.$error">
+            <div ng-message="tdGruposForm.grupo.$error.required">Se requiere el Grupo.</div>
+            <div ng-message="tdGruposForm.grupo.$error.md-maxlength">El Grupo tiene un m&aacute;ximo de 150 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdGruposModelo.editopcion > 1">  
+            <div class="letraLabel">Grupo:</div>
+            <div class="letraTexto">{{tdGruposModelo.grupo}}</div>
+         </div>			 
+ </div>
+</md-content>
+</div>
+<div>&nbsp;</div>
+
+</div> <!-- FIN -->
+
+<!-- DIALOGOS --> 
+
+<!-- FIN DIALOGOS -->
+<!-- Footer -->
+<div ng-include="'paginas/pie.html'"></div>
+<!-- Fin Footer -->

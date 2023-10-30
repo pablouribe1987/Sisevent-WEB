@@ -1,0 +1,147 @@
+<div flex="100" layout="column" layout-align="start stretch" class="margenForm" 
+data-ng-init="edittdGruposflujos()">
+
+<div layout="row" layout-aling="space-between start">
+     <div flex="auto" ng-if="nuevo">        
+        <p class="md-title">Nueva  Grupo</p>
+     </div>
+     <div flex="auto" ng-if="!nuevo">        
+        <p class="md-title">{{tdGruposflujosModelo.XXX}}</p>
+     </div>
+     <div flex="auto" layout="row" layout-aling="end center" class="alingizquierda">
+     <md-button class="md-raised md-warn botontamanio" ng-click="cancelarTdGruposflujos()">
+       <md-icon md-font-set="material-icons">undo</md-icon> 
+       <span ng-if="nuevo">Cancelar</span>
+       <span ng-if="!nuevo">Salir</span>   
+     </md-button>
+     <md-button class="md-raised botontamanio" ng-click="salvarTdGruposflujos($event)" ng-if="tdGruposflujosModelo.editopcion==1">
+       <md-icon md-font-set="material-icons">save</md-icon> 
+       <span >Grabar</span>       
+     </md-button>
+     </div>
+</div>
+
+<div layout="column">
+<md-toolbar class="md-primary tolbarconrario" >
+    <div class="md-toolbar-tools" md-colors="{color: 'background-200'}">
+      <h2>Datos</h2>
+    </div>
+</md-toolbar>
+ <md-content md-whiteframe="1" class="overflowEsconder">
+ <div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdGruposflujosModelo.editopcion < 2" flex="auto">
+            <label>Tarea</label>
+            <input type="text" md-maxlength="10" required name="idtareas" ng-model="tdGruposflujosModelo.idtareas">
+            <div ng-messages="tdGruposflujosForm.idtareas.$error">
+            <div ng-message="tdGruposflujosForm.idtareas.$error.required">Se requiere el Tarea.</div>
+            <div ng-message="tdGruposflujosForm.idtareas.$error.md-maxlength">El Tarea tiene un m&aacute;ximo de 10 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdGruposflujosModelo.editopcion > 1">  
+            <div class="letraLabel">Tarea:</div>
+            <div class="letraTexto">{{tdGruposflujosModelo.idtareas}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdGruposflujosModelo.editopcion < 2" flex="auto">
+            <label>Unidad Destino</label>
+            <input type="text" md-maxlength="10" required name="idunidadDestino" ng-model="tdGruposflujosModelo.idunidadDestino">
+            <div ng-messages="tdGruposflujosForm.idunidadDestino.$error">
+            <div ng-message="tdGruposflujosForm.idunidadDestino.$error.required">Se requiere el Unidad Destino.</div>
+            <div ng-message="tdGruposflujosForm.idunidadDestino.$error.md-maxlength">El Unidad Destino tiene un m&aacute;ximo de 10 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdGruposflujosModelo.editopcion > 1">  
+            <div class="letraLabel">Unidad Destino:</div>
+            <div class="letraTexto">{{tdGruposflujosModelo.idunidadDestino}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdGruposflujosModelo.editopcion < 2" flex="auto">
+            <label>Usuario Destino</label>
+            <input type="text" md-maxlength="10" required name="iduserDestino" ng-model="tdGruposflujosModelo.iduserDestino">
+            <div ng-messages="tdGruposflujosForm.iduserDestino.$error">
+            <div ng-message="tdGruposflujosForm.iduserDestino.$error.required">Se requiere el Usuario Destino.</div>
+            <div ng-message="tdGruposflujosForm.iduserDestino.$error.md-maxlength">El Usuario Destino tiene un m&aacute;ximo de 10 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdGruposflujosModelo.editopcion > 1">  
+            <div class="letraLabel">Usuario Destino:</div>
+            <div class="letraTexto">{{tdGruposflujosModelo.iduserDestino}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdGruposflujosModelo.editopcion < 2" flex="auto">
+            <label>Detalle De La Consulta</label>
+            <textarea ng-model="tdGruposflujosModelo.observacion" md-maxlength="4000" rows="5" md-select-on-focus></textarea>
+            <div ng-messages="tdGruposflujosForm.observacion.$error">
+            <div ng-message="tdGruposflujosForm.observacion.$error.required">Se requiere el Detalle De La Consulta.</div>
+            <div ng-message="tdGruposflujosForm.observacion.$error.md-maxlength">El Detalle De La Consulta tiene un m&aacute;ximo de 4000 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdGruposflujosModelo.editopcion > 1">  
+            <div class="letraLabel">Detalle De La Consulta:</div>
+            <div class="letraTexto">{{tdGruposflujosModelo.observacion}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdGruposflujosModelo.editopcion < 2" flex="auto">
+            <label>Detalle De La Consulta En Html</label>
+            <textarea ng-model="tdGruposflujosModelo.observacionHtml" md-maxlength="4000" rows="5" md-select-on-focus></textarea>
+            <div ng-messages="tdGruposflujosForm.observacionHtml.$error">
+            <div ng-message="tdGruposflujosForm.observacionHtml.$error.required">Se requiere el Detalle De La Consulta En Html.</div>
+            <div ng-message="tdGruposflujosForm.observacionHtml.$error.md-maxlength">El Detalle De La Consulta En Html tiene un m&aacute;ximo de 4000 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdGruposflujosModelo.editopcion > 1">  
+            <div class="letraLabel">Detalle De La Consulta En Html:</div>
+            <div class="letraTexto">{{tdGruposflujosModelo.observacionHtml}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdGruposflujosModelo.editopcion < 2" flex="auto">
+            <label>Tiempo De Estadia</label>
+            <input type="text" md-maxlength="4" required name="tiempoestadia" ng-model="tdGruposflujosModelo.tiempoestadia">
+            <div ng-messages="tdGruposflujosForm.tiempoestadia.$error">
+            <div ng-message="tdGruposflujosForm.tiempoestadia.$error.required">Se requiere el Tiempo De Estadia.</div>
+            <div ng-message="tdGruposflujosForm.tiempoestadia.$error.md-maxlength">El Tiempo De Estadia tiene un m&aacute;ximo de 4 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdGruposflujosModelo.editopcion > 1">  
+            <div class="letraLabel">Tiempo De Estadia:</div>
+            <div class="letraTexto">{{tdGruposflujosModelo.tiempoestadia}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdGruposflujosModelo.editopcion < 2" flex="auto">
+            <label>Correo De Notificación</label>
+            <input type="text" md-maxlength="250" required name="correosnotif" ng-model="tdGruposflujosModelo.correosnotif">
+            <div ng-messages="tdGruposflujosForm.correosnotif.$error">
+            <div ng-message="tdGruposflujosForm.correosnotif.$error.required">Se requiere el Correo De Notificación.</div>
+            <div ng-message="tdGruposflujosForm.correosnotif.$error.md-maxlength">El Correo De Notificación tiene un m&aacute;ximo de 250 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdGruposflujosModelo.editopcion > 1">  
+            <div class="letraLabel">Correo De Notificación:</div>
+            <div class="letraTexto">{{tdGruposflujosModelo.correosnotif}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdGruposflujosModelo.editopcion < 2" flex="auto">
+            <label></label>
+            <input type="text" md-maxlength="10" required name="idgrupo" ng-model="tdGruposflujosModelo.idgrupo">
+            <div ng-messages="tdGruposflujosForm.idgrupo.$error">
+            <div ng-message="tdGruposflujosForm.idgrupo.$error.required">Se requiere el .</div>
+            <div ng-message="tdGruposflujosForm.idgrupo.$error.md-maxlength">El  tiene un m&aacute;ximo de 10 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdGruposflujosModelo.editopcion > 1">  
+            <div class="letraLabel">:</div>
+            <div class="letraTexto">{{tdGruposflujosModelo.idgrupo}}</div>
+         </div>			 
+ </div>
+</md-content>
+</div>
+<div>&nbsp;</div>
+
+</div> <!-- FIN -->
+
+<!-- DIALOGOS --> 
+
+<!-- FIN DIALOGOS -->
+<!-- Footer -->
+<div ng-include="'paginas/pie.html'"></div>
+<!-- Fin Footer -->

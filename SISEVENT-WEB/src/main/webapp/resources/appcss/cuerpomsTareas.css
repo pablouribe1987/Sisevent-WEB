@@ -1,0 +1,26 @@
+.ttamidunidad {
+	width: 40px !important;
+	max-width: 40px !important;
+	min-width: 20px !important; 
+}
+
+.ttamidtareas{
+	width: 10px !important;
+	max-width: 10px !important;
+	min-width: 10px !important; 
+}
+.ttamtarea{
+	width: 150px !important;
+	max-width: 150px !important;
+	min-width: 150px !important; 
+}
+.ttamtiempo{
+	width: 10px !important;
+	max-width: 10px !important;
+	min-width: 10px !important; 
+}
+.ttamestado{
+	width: 1px !important;
+	max-width: 1px !important;
+	min-width: 1px !important; 
+}

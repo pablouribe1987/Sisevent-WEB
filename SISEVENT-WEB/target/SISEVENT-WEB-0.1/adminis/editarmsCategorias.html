@@ -1,0 +1,69 @@
+<div flex="100" layout="column" layout-align="start stretch" class="margenForm" 
+data-ng-init="editmsCategorias()">
+
+<div layout="row" layout-aling="space-between start">
+     <div flex="auto" ng-if="nuevo">        
+        <p class="md-title">Nueva Categorías Asigados A Los Eventos</p>
+     </div>
+     <div flex="auto" ng-if="!nuevo">        
+        <p class="md-title">{{msCategoriasModelo.XXX}}</p>
+     </div>
+     <div flex="auto" layout="row" layout-aling="end center" class="alingizquierda">
+     <md-button class="md-raised md-warn botontamanio" ng-click="cancelarMsCategorias()">
+       <md-icon md-font-set="material-icons">undo</md-icon> 
+       <span ng-if="nuevo">Cancelar</span>
+       <span ng-if="!nuevo">Salir</span>   
+     </md-button>
+     <md-button class="md-raised botontamanio" ng-click="salvarMsCategorias($event)" ng-if="msCategoriasModelo.editopcion==1">
+       <md-icon md-font-set="material-icons">save</md-icon> 
+       <span >Grabar</span>       
+     </md-button>
+     </div>
+</div>
+
+<div layout="column">
+<md-toolbar class="md-primary tolbarconrario" >
+    <div class="md-toolbar-tools" md-colors="{color: 'background-200'}">
+      <h2>Datos</h2>
+    </div>
+</md-toolbar>
+ <md-content md-whiteframe="1" class="overflowEsconder">
+ <div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="msCategoriasModelo.editopcion < 2" flex="auto">
+            <label>Categoría</label>
+            <input type="text" md-maxlength="150" required name="categoria" ng-model="msCategoriasModelo.categoria">
+            <div ng-messages="msCategoriasForm.categoria.$error">
+            <div ng-message="msCategoriasForm.categoria.$error.required">Se requiere el Categoría.</div>
+            <div ng-message="msCategoriasForm.categoria.$error.md-maxlength">El Categoría tiene un m&aacute;ximo de 150 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="msCategoriasModelo.editopcion > 1">  
+            <div class="letraLabel">Categoría:</div>
+            <div class="letraTexto">{{msCategoriasModelo.categoria}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="msCategoriasModelo.editopcion < 2" flex="auto">
+            <label>Array Separado Por | De Los Campos Que Se Deben Ocultar Al Seleccionar La Categoria</label>
+            <textarea ng-model="msCategoriasModelo.arraycamposocultos" md-maxlength="500" rows="5" md-select-on-focus></textarea>
+            <div ng-messages="msCategoriasForm.arraycamposocultos.$error">
+            <div ng-message="msCategoriasForm.arraycamposocultos.$error.required">Se requiere el Array Separado Por | De Los Campos Que Se Deben Ocultar Al Seleccionar La Categoria.</div>
+            <div ng-message="msCategoriasForm.arraycamposocultos.$error.md-maxlength">El Array Separado Por | De Los Campos Que Se Deben Ocultar Al Seleccionar La Categoria tiene un m&aacute;ximo de 500 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="msCategoriasModelo.editopcion > 1">  
+            <div class="letraLabel">Array Separado Por | De Los Campos Que Se Deben Ocultar Al Seleccionar La Categoria:</div>
+            <div class="letraTexto">{{msCategoriasModelo.arraycamposocultos}}</div>
+         </div>			 
+ </div>
+</md-content>
+</div>
+<div>&nbsp;</div>
+
+</div> <!-- FIN -->
+
+<!-- DIALOGOS --> 
+
+<!-- FIN DIALOGOS -->
+<!-- Footer -->
+<div ng-include="'paginas/pie.html'"></div>
+<!-- Fin Footer -->

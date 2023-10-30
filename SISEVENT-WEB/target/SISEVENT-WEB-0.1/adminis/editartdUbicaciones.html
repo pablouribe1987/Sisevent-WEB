@@ -1,0 +1,160 @@
+<div flex="100" layout="column" layout-align="start stretch" class="margenForm" 
+data-ng-init="edittdUbicaciones()">
+
+<div layout="row" layout-aling="space-between start">
+     <div flex="auto" ng-if="nuevo">        
+        <p class="md-title">Nueva Ubicaciones Asigados A Los Eventos</p>
+     </div>
+     <div flex="auto" ng-if="!nuevo">        
+        <p class="md-title">{{tdUbicacionesModelo.XXX}}</p>
+     </div>
+     <div flex="auto" layout="row" layout-aling="end center" class="alingizquierda">
+     <md-button class="md-raised md-warn botontamanio" ng-click="cancelarTdUbicaciones()">
+       <md-icon md-font-set="material-icons">undo</md-icon> 
+       <span ng-if="nuevo">Cancelar</span>
+       <span ng-if="!nuevo">Salir</span>   
+     </md-button>
+     <md-button class="md-raised botontamanio" ng-click="salvarTdUbicaciones($event)" ng-if="tdUbicacionesModelo.editopcion==1">
+       <md-icon md-font-set="material-icons">save</md-icon> 
+       <span >Grabar</span>       
+     </md-button>
+     </div>
+</div>
+
+<div layout="column">
+<md-toolbar class="md-primary tolbarconrario" >
+    <div class="md-toolbar-tools" md-colors="{color: 'background-200'}">
+      <h2>Datos</h2>
+    </div>
+</md-toolbar>
+ <md-content md-whiteframe="1" class="overflowEsconder">
+ <div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdUbicacionesModelo.editopcion < 2" flex="auto">
+            <label>Número</label>
+            <input type="text" md-maxlength="10" required name="idevent" ng-model="tdUbicacionesModelo.idevent">
+            <div ng-messages="tdUbicacionesForm.idevent.$error">
+            <div ng-message="tdUbicacionesForm.idevent.$error.required">Se requiere el Número.</div>
+            <div ng-message="tdUbicacionesForm.idevent.$error.md-maxlength">El Número tiene un m&aacute;ximo de 10 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdUbicacionesModelo.editopcion > 1">  
+            <div class="letraLabel">Número:</div>
+            <div class="letraTexto">{{tdUbicacionesModelo.idevent}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start">       
+        <md-input-container class="md-block input-container-margen" ng-if="tdUbicacionesModelo.editopcion < 2" flex="auto">
+            <label>País</label>
+            <md-select ng-model="tdUbicacionesModelo.codpais" ng-change="changeCodpais()" required>
+             <md-option ng-repeat="item in listaCodpais" ng-value="item.id">
+                 {{item.valor}}
+             </md-option>
+            </md-select>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdUbicacionesModelo.editopcion > 1">  
+            <div class="letraLabel">País:</div>
+            <div class="letraTexto">{{tdUbicacionesModelo.codpaisTxt}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdUbicacionesModelo.editopcion < 2" flex="auto">
+            <label>Departamento</label>
+            <input type="text" md-maxlength="2" required name="coddpto" ng-model="tdUbicacionesModelo.coddpto">
+            <div ng-messages="tdUbicacionesForm.coddpto.$error">
+            <div ng-message="tdUbicacionesForm.coddpto.$error.required">Se requiere el Departamento.</div>
+            <div ng-message="tdUbicacionesForm.coddpto.$error.md-maxlength">El Departamento tiene un m&aacute;ximo de 2 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdUbicacionesModelo.editopcion > 1">  
+            <div class="letraLabel">Departamento:</div>
+            <div class="letraTexto">{{tdUbicacionesModelo.coddpto}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdUbicacionesModelo.editopcion < 2" flex="auto">
+            <label>Provincia</label>
+            <input type="text" md-maxlength="2" required name="codprov" ng-model="tdUbicacionesModelo.codprov">
+            <div ng-messages="tdUbicacionesForm.codprov.$error">
+            <div ng-message="tdUbicacionesForm.codprov.$error.required">Se requiere el Provincia.</div>
+            <div ng-message="tdUbicacionesForm.codprov.$error.md-maxlength">El Provincia tiene un m&aacute;ximo de 2 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdUbicacionesModelo.editopcion > 1">  
+            <div class="letraLabel">Provincia:</div>
+            <div class="letraTexto">{{tdUbicacionesModelo.codprov}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdUbicacionesModelo.editopcion < 2" flex="auto">
+            <label>Distrito</label>
+            <input type="text" md-maxlength="2" required name="coddist" ng-model="tdUbicacionesModelo.coddist">
+            <div ng-messages="tdUbicacionesForm.coddist.$error">
+            <div ng-message="tdUbicacionesForm.coddist.$error.required">Se requiere el Distrito.</div>
+            <div ng-message="tdUbicacionesForm.coddist.$error.md-maxlength">El Distrito tiene un m&aacute;ximo de 2 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdUbicacionesModelo.editopcion > 1">  
+            <div class="letraLabel">Distrito:</div>
+            <div class="letraTexto">{{tdUbicacionesModelo.coddist}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdUbicacionesModelo.editopcion < 2" flex="auto">
+            <label>Ubicación</label>
+            <textarea ng-model="tdUbicacionesModelo.ubicacion" md-maxlength="550" rows="5" md-select-on-focus></textarea>
+            <div ng-messages="tdUbicacionesForm.ubicacion.$error">
+            <div ng-message="tdUbicacionesForm.ubicacion.$error.required">Se requiere el Ubicación.</div>
+            <div ng-message="tdUbicacionesForm.ubicacion.$error.md-maxlength">El Ubicación tiene un m&aacute;ximo de 550 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdUbicacionesModelo.editopcion > 1">  
+            <div class="letraLabel">Ubicación:</div>
+            <div class="letraTexto">{{tdUbicacionesModelo.ubicacion}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdUbicacionesModelo.editopcion < 2" flex="auto">
+            <label>Fecha Y Hora Final</label>
+            <input type="text" md-maxlength="7" required name="fechaActivIni" ng-model="tdUbicacionesModelo.fechaActivIni">
+            <div ng-messages="tdUbicacionesForm.fechaActivIni.$error">
+            <div ng-message="tdUbicacionesForm.fechaActivIni.$error.required">Se requiere el Fecha Y Hora Final.</div>
+            <div ng-message="tdUbicacionesForm.fechaActivIni.$error.md-maxlength">El Fecha Y Hora Final tiene un m&aacute;ximo de 7 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdUbicacionesModelo.editopcion > 1">  
+            <div class="letraLabel">Fecha Y Hora Final:</div>
+            <div class="letraTexto">{{tdUbicacionesModelo.fechaActivIni}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="tdUbicacionesModelo.editopcion < 2" flex="auto">
+            <label></label>
+            <input type="text" md-maxlength="7" required name="fechaActivFin" ng-model="tdUbicacionesModelo.fechaActivFin">
+            <div ng-messages="tdUbicacionesForm.fechaActivFin.$error">
+            <div ng-message="tdUbicacionesForm.fechaActivFin.$error.required">Se requiere el .</div>
+            <div ng-message="tdUbicacionesForm.fechaActivFin.$error.md-maxlength">El  tiene un m&aacute;ximo de 7 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdUbicacionesModelo.editopcion > 1">  
+            <div class="letraLabel">:</div>
+            <div class="letraTexto">{{tdUbicacionesModelo.fechaActivFin}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start">       
+        <md-input-container class="md-block input-container-margen" ng-if="tdUbicacionesModelo.editopcion < 2" flex="auto">
+            <label>Usuario Del Sistema Que Modifica El Registro</label>
+            <md-select ng-model="tdUbicacionesModelo.iduserModif" ng-change="changeIduserModif()" required>
+             <md-option ng-repeat="item in listaMsUsuariosIduserModif" ng-value="item.id">
+                 {{item.valor}}
+             </md-option>
+            </md-select>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="tdUbicacionesModelo.editopcion > 1">  
+            <div class="letraLabel">Usuario Del Sistema Que Modifica El Registro:</div>
+            <div class="letraTexto">{{tdUbicacionesModelo.iduserModifTxt}}</div>
+         </div>			 
+ </div>
+</md-content>
+</div>
+<div>&nbsp;</div>
+
+</div> <!-- FIN -->
+
+<!-- DIALOGOS --> 
+
+<!-- FIN DIALOGOS -->
+<!-- Footer -->
+<div ng-include="'paginas/pie.html'"></div>
+<!-- Fin Footer -->

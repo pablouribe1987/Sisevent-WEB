@@ -1,0 +1,154 @@
+<div flex="100" layout="column" layout-align="start stretch" class="margenPersonsa" 
+data-ng-init="editmsUnidadesOrg()">
+
+<div layout="row" layout-aling="space-between start">
+     <div flex="auto" ng-if="nuevo">        
+        <p class="md-title">Nueva Unidad Orgánica</p>
+     </div>
+     <div flex="auto" ng-if="!nuevo">        
+        <p class="md-title">{{msUnidadesOrgModelo.descripcion}}</p>
+     </div>
+     <div flex="auto" layout="row" layout-aling="end center" class="alingizquierda">
+     <md-button class="md-raised md-warn botontamanio" ng-click="cancelarMsUnidadesOrg()">
+       <md-icon md-font-set="material-icons">undo</md-icon> 
+       <span ng-if="nuevo">Cancelar</span>
+       <span ng-if="!nuevo">Salir</span>       
+     </md-button>
+     <md-button  class="md-raised botontamanio" ng-click="salvarMsUnidadesOrg($event)" ng-if="msUnidadesOrgModelo.editopcion==1">
+       <md-icon md-font-set="material-icons">save</md-icon> 
+       <span >Grabar</span>       
+     </md-button>
+     </div>
+</div>
+
+<div>
+<md-toolbar class="md-primary tolbarconrario" >
+    <div class="md-toolbar-tools" md-colors="{color: 'background-200'}">
+      <h2>Datos de la unidad orgánica</h2>
+    </div>
+</md-toolbar>
+ <md-content md-whiteframe="1" class="overflowEsconder">
+ <div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="msUnidadesOrgModelo.editopcion < 2">
+            <label>Nombre</label>
+            <input type="text" md-maxlength="255" required name="descripcion" ng-model="msUnidadesOrgModelo.descripcion">
+            <div ng-messages="msUnidadesOrgDlgForm.descripcion.$error">
+            <div ng-message="msUnidadesOrgDlgForm.descripcion.$error.required">Se requiere el Nombre.</div>
+            <div ng-message="msUnidadesOrgDlgForm.descripcion.$error.md-maxlength">El Nombre tiene un maximo de 255 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="msUnidadesOrgModelo.editopcion > 1">  
+            <div class="letraLabel">Nombre:</div>
+            <div class="letraTexto">{{msUnidadesOrgModelo.descripcion}}</div>
+         </div>
+                
+<!--         <md-input-container class="md-block input-container-margen" ng-if="msUnidadesOrgModelo.editopcion < 2"> -->
+<!--             <label>Dependencia</label> -->
+<!--             <input type="text" md-maxlength="10" name="idpadre" ng-model="msUnidadesOrgModelo.idpadre"> -->
+<!--             <div ng-messages="msUnidadesOrgDlgForm.idpadre.$error"> -->
+<!--             <div ng-message="msUnidadesOrgDlgForm.idpadre.$error.md-maxlength">El Dependencia tiene un maximo de 10 caracteres.</div> -->
+<!--             </div> -->
+<!--          </md-input-container> -->
+
+         <md-input-container class="md-block input-container-margen" flex="none" ng-if="msUnidadesOrgModelo.editopcion < 2">
+        <label>Buscar por:</label>
+          <input class="entradachica" md-maxlength="10" name="bCodigo" ng-model="uoCodToSearch.buscarcodigo" />
+        </md-input-container>
+        <md-button class="md-fab md-mini" id="popupContainerDlg" aria-label="Buscar por código documentario" 
+        ng-click="searchUOByCodigo($event)" ng-if="msUnidadesOrgModelo.editopcion < 2">
+            <md-icon md-font-set="material-icons">search</md-icon>
+        </md-button>
+        <md-button class="md-fab md-mini dialog-open-button" aria-label="Buscar en arbol" 
+        ng-click="showTreeDialog($event)" ng-if="msUnidadesOrgModelo.editopcion < 2">
+            <md-icon md-font-set="material-icons">format_indent_increase</md-icon>
+        </md-button>
+        <md-input-container class="input-container-margen" ng-if="msUnidadesOrgModelo.editopcion < 2">
+         <label>Dependencia</label>
+          <md-select class="entradamediana" ng-model="msUnidadesOrgModelo.idpadre" required>
+            <md-optgroup label="Dependencia">
+             <md-option ng-repeat="item in listaUO" ng-value="item.idunidad">{{item.descripcion}}</md-option>
+            </md-optgroup>
+          </md-select>
+         </md-input-container>
+         
+         <div class="letraenvoltura" ng-if="msUnidadesOrgModelo.editopcion > 1">  
+            <div class="letraLabel">Dependencia:</div>
+            <div class="letraTexto">{{msUnidadesOrgModelo.idpadreTxt}}</div>
+         </div>			 
+ </div>
+ <div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="msUnidadesOrgModelo.editopcion < 2">
+            <label>Código</label>
+            <input type="text" md-maxlength="60" name="codigo" ng-model="msUnidadesOrgModelo.codigo">
+            <div ng-messages="msUnidadesOrgDlgForm.codigo.$error">
+            <div ng-message="msUnidadesOrgDlgForm.codigo.$error.md-maxlength">El Código tiene un maximo de 60 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="msUnidadesOrgModelo.editopcion > 1">  
+            <div class="letraLabel">Código:</div>
+            <div class="letraTexto">{{msUnidadesOrgModelo.codigo}}</div>
+         </div>
+         
+         <md-input-container class="md-block input-container-margen" ng-if="msUnidadesOrgModelo.editopcion < 2">
+            <label>Acrónimo</label>
+            <input type="text" md-maxlength="25" name="acronimo" ng-model="msUnidadesOrgModelo.acronimo">
+            <div ng-messages="msUnidadesOrgDlgForm.acronimo.$error">
+            <div ng-message="msUnidadesOrgDlgForm.acronimo.$error.md-maxlength">El Acrónimo tiene un maximo de 25 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="msUnidadesOrgModelo.editopcion > 1">  
+            <div class="letraLabel">Acrónimo:</div>
+            <div class="letraTexto">{{msUnidadesOrgModelo.acronimo}}</div>
+         </div>
+         
+         <md-input-container class="md-block input-container-margen" ng-if="msUnidadesOrgModelo.editopcion < 2">
+<!--             <label>Es Oficina General</label> -->
+<!--             <input type="text" md-maxlength="1" required name="flagofgeneral" ng-model="msUnidadesOrgModelo.flagofgeneral"> -->
+<!--             <div ng-messages="msUnidadesOrgDlgForm.flagofgeneral.$error"> -->
+<!--             <div ng-message="msUnidadesOrgDlgForm.flagofgeneral.$error.required">Se requiere el Es Oficina General.</div> -->
+<!--             <div ng-message="msUnidadesOrgDlgForm.flagofgeneral.$error.md-maxlength">El Es Oficina General tiene un maximo de 1 caracteres.</div> -->
+<!--             </div> -->
+            <md-checkbox ng-model="msUnidadesOrgModelo.flagofgeneral" aria-label="Checkbox 1" 
+            ng-true-value="1" ng-false-value="0">
+              Es Oficina General
+            </md-checkbox>          
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="msUnidadesOrgModelo.editopcion > 1 && msUnidadesOrgModelo.flagofgeneral==1">  
+            <div class="letraLabel">Es Oficina General</div>
+         </div>			 
+ </div>
+</md-content>
+</div>
+<div>&nbsp;</div>
+
+</div> <!-- FIN -->
+
+<!-- DIALOGOS -->
+<div style="visibility: hidden">
+   <div class="md-dialog-container" id="treeDialog"><md-dialog layout-padding> <md-toolbar>
+      <div class="md-toolbar-tools" md-colors="{color: 'background-200'}">
+         <h2>Unidades Orgánicas</h2> <span flex></span> <md-button class="md-icon-button" ng-click="cancel()">
+         <md-icon md-font-set="material-icons" aria-label="Close dialog">clear</md-icon> </md-button>
+      </div>
+      </md-toolbar> <md-dialog-content>
+      <div class="md-dialog-content">
+         <ul tree roots="listaUOTree" item="n">
+            <li draggable="true" id="{{n.id}}" ng-init="collapsed=true">
+               <div class="node" ng-style="{'padding-left':(20*level)+'px'}">
+               <md-button class="treeBotonEstado"
+                     ng-click="collapsed=!collapsed"
+                  > <md-icon ng-show="!collapsed && tienechildren" class="md-treeActivo" md-font-set="material-icons">play_arrow</md-icon>
+                  <md-icon ng-show="collapsed && tienechildren" class="md-treeDesactivo" md-font-set="material-icons">play_arrow</md-icon>
+                  </md-button> <span ng-click="setIdUnidad(n.id)" class="treenombreover">{{n.name}}</span></div>
+               <div ng-show="!collapsed"><recur></recur></div>
+            </li>
+         </ul>
+      </div>
+      </md-dialog-content> <md-dialog-actions layout="row" layout-align="center end"> <md-button
+         class="md-raised md-primary alargarBoton" ng-click="cancel()"
+      > Cancelar </md-button> </md-dialog-actions> </md-dialog></div>
+</div>
+<!-- FIN DIALOGOS -->
+<!-- Footer -->
+<div ng-include="'paginas/pie.html'"></div>
+<!-- Fin Footer -->

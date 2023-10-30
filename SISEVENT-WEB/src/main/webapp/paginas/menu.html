@@ -1,0 +1,107 @@
+<div layout="column" layout-align="space-around center"
+	class="menu-barra" flex ng-controller="menuCtrl as ctrl" ng-cloak
+	md-colors="{background: 'mythema-primary-900'}" data-ng-init="cargarperfil()">
+	<div>
+		<md-button class="menu-button" name="registros"
+			ng-mouseover="showMenu($event, registros)"> <md-icon
+			md-svg-src="resources/icons/all_inbox-24px.svg"
+			aria-label="Registros"> </md-icon> </md-button>
+	</div>
+	<div>
+		<md-button class="menu-button" name="reportes"
+			ng-mouseover="showMenu($event, reportes)"> <md-icon
+			md-svg-icon="resources/icons/assessment-24px.svg"
+			aria-label="Reportes"> </md-icon> </md-button>
+	</div>
+	<div>
+		<md-button class="menu-button" name="administracion"
+			ng-mouseover="showMenu($event, administracion)"> <md-icon
+			md-svg-icon="resources/icons/settings-24px.svg"
+			aria-label="Administración"></md-icon> </md-button>
+	</div>
+	<div>
+		<md-button class="menu-button" name="configuracion"
+			ng-mouseover="showMenu($event, configuracion)"> <md-icon
+			md-svg-icon="resources/icons/build-24px.svg"
+			aria-label="Configuración"> </md-icon> </md-button>
+	</div>
+	<div>
+		<md-button class="menu-button" name="ayuda"
+			ng-mouseover="showMenu($event, ayuda)"> <md-icon
+			md-svg-icon="resources/icons/help-24px.svg" aria-label="Ayudas">
+		</md-icon> </md-button>
+	</div>
+
+	<div flex="auto" layout="column" layout-align="end center"
+		class="menu-barra" ng-cloak md-colors="{background: 'mythema-primary-900'}">
+		<div>
+			<md-button class="menu-button" ng-click="salir()"> <md-icon
+				md-svg-icon="resources/icons/power_settings_new-24px.svg"
+				aria-label="Salir"> </md-icon> </md-button>
+		</div>
+		<div>
+			<md-button class="menu-button" ng-click="salir()"> <md-icon
+				md-svg-icon="resources/icons/lock-24px.svg" aria-label="Bloquear">
+			</md-icon> </md-button>
+		</div>
+		<div>&nbsp;</div>
+		<div>&nbsp;</div>
+		<div>&nbsp;</div>
+		<div>&nbsp;</div>
+	</div>
+
+<!-- DIALOGOS -->
+<div style="visibility: hidden">
+    <!-- CAMBIO DE CLAVE -->
+  <div class="md-dialog-container" id="cambioClaveDialog">
+    <md-dialog layout-padding>   
+     <md-toolbar>
+      <div class="md-toolbar-tools" md-colors="{color: 'background-200'}">
+        <h2>CAMBIO DE CONTRASEÑA</h2>
+        <span flex></span>
+         <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-font-set="material-icons" aria-label="Close dialog">clear</md-icon>
+        </md-button>        
+      </div>     
+     </md-toolbar>
+    <md-dialog-content>
+    
+    <span style="font-size: 14px !important;color:#555753;"><b>{{msUsuariosPerfilJS.nombrecompleto}}</b></span>  
+    <md-input-container class="md-block input-container-margen">
+            <label>Contrase&ntilde;a</label>
+            <input type="password" md-maxlength="100" required name="contrasenia" 
+            ng-model="msUsuariosPerfilJS.contrasenia" 
+            strength id="contraseniaid" feedback="false" autocomplete="new-password"
+            >
+            <div ng-messages="MsUsuariosDlgForm.contrasenia.$error">
+            <div ng-message="MsUsuariosDlgForm.contrasenia.$error.required">Se requiere la Contrase&ntilde;a.</div>
+            <div ng-message="MsUsuariosDlgForm.contrasenia.$error.md-maxlength">La Contrase&ntilde;a tiene un maximo de 100 caracteres.</div>
+            </div>
+    </md-input-container>
+         <md-input-container class="md-block input-container-margen">
+            <label>Repetir Contrase&ntilde;a</label>
+            <input type="password" md-maxlength="100" required name="contraseniaConfir" 
+            ng-model="msUsuariosPerfilJS.contraseniaConfir" 
+            strength id="contraseniaConfirid" feedback="false" autocomplete="new-password"
+            >
+            <div ng-messages="MsUsuariosDlgForm.contraseniaConfir.$error">
+            <div ng-message="MsUsuariosDlgForm.contraseniaConfir.$error.required">Se requiere repita la Contrase&ntilde;a.</div>
+            <div ng-message="MsUsuariosDlgForm.contraseniaConfir.$error.md-maxlength">La Contrase&ntilde;a tiene un maximo de 100 caracteres.</div>
+            </div>
+         </md-input-container>
+         
+  </md-dialog-content>          
+     <md-dialog-actions layout="row" layout-align="center end">  
+       <md-button class="md-raised md-primary alargarBoton" ng-click="cancel()">
+            Cancelar
+       </md-button>
+       <md-button class="md-raised md-primary alargarBoton" ng-click="actulizarMsUsuarios($event)">
+            Aceptar
+       </md-button>   
+     </md-dialog-actions> 
+    </md-dialog>
+   </div>
+</div>
+<!-- FIN DIALOGOS -->
+
+</div>

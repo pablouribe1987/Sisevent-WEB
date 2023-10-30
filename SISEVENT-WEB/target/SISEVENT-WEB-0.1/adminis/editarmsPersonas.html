@@ -1,0 +1,282 @@
+<div flex="100" layout="column" layout-align="start stretch" class="margenPersonsa" 
+data-ng-init="editmsPersonas()">
+
+<div layout="row" layout-aling="space-between start">
+     <div flex="auto" ng-if="nuevo">        
+        <p class="md-title">Nueva Persona</p>
+     </div>
+     <div flex="auto" ng-if="!nuevo">        
+        <p class="md-title">{{msPersonasModelo.nombres+' '+msPersonasModelo.apellidoPaterno+' '+msPersonasModelo.apellidoMaterno}}</p>
+     </div>
+     <div flex="auto" layout="row" layout-aling="end center" class="alingizquierda">
+     <md-button class="md-raised md-warn botontamanio" ng-click="cancelarMsPersonas()">
+       <md-icon md-font-set="material-icons">undo</md-icon> 
+       <span ng-if="nuevo">Cancelar</span>
+       <span ng-if="!nuevo">Salir</span>      
+     </md-button>
+     <md-button  class="md-raised botontamanio" ng-click="salvarMsPersonas($event)" 
+     ng-if="msPersonasModelo.editopcion==1">
+       <md-icon md-font-set="material-icons">save</md-icon> 
+       <span >Grabar</span>       
+     </md-button>
+     </div>
+</div>
+
+<div>
+<md-toolbar class="md-primary tolbarconrario" >
+    <div class="md-toolbar-tools" md-colors="{color: 'background-200'}">
+      <h2>Datos de la persona</h2>
+    </div>
+</md-toolbar>
+ <md-content md-whiteframe="1" class="overflowEsconder">
+ <div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="msPersonasModelo.editopcion < 2">
+            <label>Apellido Paterno</label>
+            <input type="text" md-maxlength="100" required name="apellidoPaterno" ng-model="msPersonasModelo.apellidoPaterno">
+            <div ng-messages="msPersonasDlgForm.apellidoPaterno.$error">
+            <div ng-message="msPersonasDlgForm.apellidoPaterno.$error.required">Se requiere el Apellido Paterno.</div>
+            <div ng-message="msPersonasDlgForm.apellidoPaterno.$error.md-maxlength">El Apellido Paterno tiene un maximo de 100 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="msPersonasModelo.editopcion > 1">  
+            <div class="letraLabel">Apellido Paterno:</div>
+            <div class="letraTexto">{{msPersonasModelo.apellidoPaterno}}</div>
+         </div>
+         
+         <md-input-container class="md-block input-container-margen" ng-if="msPersonasModelo.editopcion < 2">
+            <label>Apellido Materno</label>
+            <input type="text" md-maxlength="100" required name="apellidoMaterno" ng-model="msPersonasModelo.apellidoMaterno">
+            <div ng-messages="msPersonasDlgForm.apellidoMaterno.$error">
+            <div ng-message="msPersonasDlgForm.apellidoMaterno.$error.required">Se requiere el Apellido Materno.</div>
+            <div ng-message="msPersonasDlgForm.apellidoMaterno.$error.md-maxlength">El Apellido Materno tiene un maximo de 100 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="msPersonasModelo.editopcion > 1">  
+            <div class="letraLabel">Apellido Materno:</div>
+            <div class="letraTexto">{{msPersonasModelo.apellidoMaterno}}</div>
+         </div>          			 
+ </div>
+ 
+ <div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="msPersonasModelo.editopcion < 2">
+            <label>Nombres</label>
+            <input type="text" md-maxlength="150" required name="nombres" ng-model="msPersonasModelo.nombres">
+            <div ng-messages="msPersonasDlgForm.nombres.$error">
+            <div ng-message="msPersonasDlgForm.nombres.$error.required">Se requiere el Nombres.</div>
+            <div ng-message="msPersonasDlgForm.nombres.$error.md-maxlength">El Nombres tiene un maximo de 150 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="msPersonasModelo.editopcion > 1">  
+            <div class="letraLabel">Nombres:</div>
+            <div class="letraTexto">{{msPersonasModelo.nombres}}</div>
+         </div>
+        
+        <md-input-container class="md-block input-container-margen" ng-if="msPersonasModelo.editopcion < 2">
+            <label>Sexo</label>
+<!--             <input type="text" md-maxlength="1" required name="sexo" ng-model="msPersonasModelo.sexo"> -->
+<!--             <div ng-messages="msPersonasDlgForm.sexo.$error"> -->
+<!--             <div ng-message="msPersonasDlgForm.sexo.$error.required">Se requiere el Sexo.</div> -->
+<!--             <div ng-message="msPersonasDlgForm.sexo.$error.md-maxlength">El Sexo tiene un maximo de 1 caracteres.</div> -->
+<!--             </div> -->
+         <md-radio-group ng-model="msPersonasModelo.sexo" aria-labelledby="favoriteFruit" layout="row">
+            <md-radio-button value="M" class="md-primary">Masculino</md-radio-button>
+            <md-radio-button value="F">Femenino</md-radio-button>
+         </md-radio-group>            
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="msPersonasModelo.editopcion > 1">  
+            <div class="letraLabel">Sexo:</div>
+            <div class="letraTexto">{{msPersonasModelo.sexo}}</div>
+         </div>
+         			 
+ </div>
+<!-- <div layout="row" layout-aling="center start">  -->
+<!--         <md-input-container class="md-block input-container-margen" ng-if="msPersonasModelo.editopcion < 2"> -->
+<!--             <label>Tipo De Documento</label> -->
+<!--             <input type="text" md-maxlength="10" required name="tipodocumento" ng-model="msPersonasModelo.tipodocumento"> -->
+<!--             <div ng-messages="msPersonasDlgForm.tipodocumento.$error"> -->
+<!--             <div ng-message="msPersonasDlgForm.tipodocumento.$error.required">Se requiere el Tipo De Documento.</div> -->
+<!--             <div ng-message="msPersonasDlgForm.tipodocumento.$error.md-maxlength">El Tipo De Documento tiene un maximo de 10 caracteres.</div> -->
+<!--             </div> -->
+<!--          </md-input-container> -->
+<!--          <div class="letraenvoltura" ng-if="msPersonasModelo.editopcion > 1">   -->
+<!--             <div class="letraLabel">Tipo De Documento:</div> -->
+<!--             <div class="letraTexto">{{msPersonasModelo.tipodocumento}}</div> -->
+<!--          </div>			  -->
+<!-- </div> -->
+<div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="msPersonasModelo.editopcion < 2">
+            <label>N° De Documento</label>
+            <input type="text" md-maxlength="25" required name="documentoNumero" ng-model="msPersonasModelo.documentoNumero">
+            <div ng-messages="msPersonasDlgForm.documentoNumero.$error">
+            <div ng-message="msPersonasDlgForm.documentoNumero.$error.required">Se requiere el N° De Documento.</div>
+            <div ng-message="msPersonasDlgForm.documentoNumero.$error.md-maxlength">El N° De Documento tiene un maximo de 25 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="msPersonasModelo.editopcion > 1">  
+            <div class="letraLabel">N° De Documento:</div>
+            <div class="letraTexto">{{msPersonasModelo.documentoNumero}}</div>
+         </div>
+         
+         <md-input-container class="md-block input-container-margen" ng-if="msPersonasModelo.editopcion < 2">
+            <label>Correo</label>
+            <input type="text" md-maxlength="50" required name="correo" ng-model="msPersonasModelo.correo">
+            <div ng-messages="msPersonasDlgForm.correo.$error">
+            <div ng-message="msPersonasDlgForm.correo.$error.required">Se requiere el Correo.</div>
+            <div ng-message="msPersonasDlgForm.correo.$error.md-maxlength">El Correo tiene un maximo de 50 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="msPersonasModelo.editopcion > 1">  
+            <div class="letraLabel">Correo:</div>
+            <div class="letraTexto">{{msPersonasModelo.correo}}</div>
+         </div>			 
+ </div>
+ <div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="msPersonasModelo.editopcion < 2">
+            <label>Teléfono</label>
+            <input type="text" md-maxlength="15" required name="telefono" ng-model="msPersonasModelo.telefono">
+            <div ng-messages="msPersonasDlgForm.telefono.$error">
+            <div ng-message="msPersonasDlgForm.telefono.$error.required">Se requiere el Teléfono.</div>
+            <div ng-message="msPersonasDlgForm.telefono.$error.md-maxlength">El Teléfono tiene un maximo de 15 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="msPersonasModelo.editopcion > 1">  
+            <div class="letraLabel">Teléfono:</div>
+            <div class="letraTexto">{{msPersonasModelo.telefono}}</div>
+         </div>	
+         
+        <md-input-container class="md-block input-container-margen" ng-if="msPersonasModelo.editopcion < 2">
+            <label>Celular</label>
+            <input type="text" md-maxlength="15" required name="celular" ng-model="msPersonasModelo.celular">
+            <div ng-messages="msPersonasDlgForm.celular.$error">
+            <div ng-message="msPersonasDlgForm.celular.$error.required">Se requiere el Celular.</div>
+            <div ng-message="msPersonasDlgForm.celular.$error.md-maxlength">El Celular tiene un maximo de 15 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="msPersonasModelo.editopcion > 1">  
+            <div class="letraLabel">Celular:</div>
+            <div class="letraTexto">{{msPersonasModelo.celular}}</div>
+         </div>
+          		 
+ </div>
+ <div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="msPersonasModelo.editopcion < 2">
+            <label>País</label>
+<!--             <input type="text" md-maxlength="10" required name="codpais" ng-model="msPersonasModelo.codpais"> -->
+<!--             <div ng-messages="msPersonasDlgForm.codpais.$error"> -->
+<!--             <div ng-message="msPersonasDlgForm.codpais.$error.required">Se requiere el País.</div> -->
+<!--             <div ng-message="msPersonasDlgForm.codpais.$error.md-maxlength">El País tiene un maximo de 10 caracteres.</div> -->
+<!--             </div> -->
+              <md-select ng-model="msPersonasModelo.codpais">
+               <md-option ng-repeat="item in listaPaisess" ng-value="item.id">
+                {{ item.valor }}
+               </md-option>
+              </md-select>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="msPersonasModelo.editopcion > 1">  
+            <div class="letraLabel">País:</div>
+            <div class="letraTexto">{{msPersonasModelo.codpaisTxt}}</div>
+         </div>	
+         		 
+ </div>
+ 
+ <div layout="row" layout-aling="center start"  ng-if="visualizarUbigeo"> 
+        <md-input-container class="md-block input-container-margen" ng-if="msPersonasModelo.editopcion < 2">
+            <label>Departamento</label>
+<!--             <input type="text" md-maxlength="2" required name="coddpto" ng-model="msPersonasModelo.coddpto"> -->
+<!--             <div ng-messages="msPersonasDlgForm.coddpto.$error"> -->
+<!--             <div ng-message="msPersonasDlgForm.coddpto.$error.required">Se requiere el Departamento.</div> -->
+<!--             <div ng-message="msPersonasDlgForm.coddpto.$error.md-maxlength">El Departamento tiene un maximo de 2 caracteres.</div> -->
+<!--             </div> -->
+            <md-select ng-model="msPersonasModelo.coddpto" ng-change="changeCoddpto()">
+               <md-option ng-repeat="item in listaCoddptoss" ng-value="item.id">
+                {{ item.valor }}
+               </md-option>
+              </md-select>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="msPersonasModelo.editopcion > 1">  
+            <div class="letraLabel">Departamento:</div>
+            <div class="letraTexto">{{msPersonasModelo.coddptoTxt}}</div>
+         </div>			 
+         
+        <md-input-container class="md-block input-container-margen" ng-if="msPersonasModelo.editopcion < 2">
+            <label>Provincia</label>
+<!--             <input type="text" md-maxlength="2" required name="codprov" ng-model="msPersonasModelo.codprov"> -->
+<!--             <div ng-messages="msPersonasDlgForm.codprov.$error"> -->
+<!--             <div ng-message="msPersonasDlgForm.codprov.$error.required">Se requiere el Provincia.</div> -->
+<!--             <div ng-message="msPersonasDlgForm.codprov.$error.md-maxlength">El Provincia tiene un maximo de 2 caracteres.</div> -->
+<!--             </div> -->
+              <md-select ng-model="msPersonasModelo.codprov" ng-change="changeCodprov()">
+               <md-option ng-repeat="item in listaCodprovs" ng-value="item.id">
+                {{ item.valor }}
+               </md-option>
+              </md-select>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="msPersonasModelo.editopcion > 1">  
+            <div class="letraLabel">Provincia:</div>
+            <div class="letraTexto">{{msPersonasModelo.codprovTxt}}</div>
+         </div>
+         
+         <md-input-container class="md-block input-container-margen" ng-if="msPersonasModelo.editopcion < 2">
+            <label>Distrito</label>
+<!--             <input type="text" md-maxlength="2" required name="coddist" ng-model="msPersonasModelo.coddist"> -->
+<!--             <div ng-messages="msPersonasDlgForm.coddist.$error"> -->
+<!--             <div ng-message="msPersonasDlgForm.coddist.$error.required">Se requiere el Distrito.</div> -->
+<!--             <div ng-message="msPersonasDlgForm.coddist.$error.md-maxlength">El Distrito tiene un maximo de 2 caracteres.</div> -->
+<!--             </div> -->
+              <md-select ng-model="msPersonasModelo.coddist">
+               <md-option ng-repeat="item in listaCoddists" ng-value="item.id">
+                {{ item.valor }}
+               </md-option>
+              </md-select>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="msPersonasModelo.editopcion > 1">  
+            <div class="letraLabel">Distrito:</div>
+            <div class="letraTexto">{{msPersonasModelo.coddistTxt}}</div>
+         </div>
+          
+ </div>
+ 
+ <div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" 
+        ng-if="msPersonasModelo.editopcion < 2" flex="70">
+            <label>Dirección</label>
+<!--             <input type="text" md-maxlength="255" required name="direccion" ng-model="msPersonasModelo.direccion"> -->
+            <textarea md-maxlength="255" required name="direccion" ng-model="msPersonasModelo.direccion" md-select-on-focus rows="1"></textarea>
+            <div ng-messages="msPersonasDlgForm.direccion.$error">
+            <div ng-message="msPersonasDlgForm.direccion.$error.required">Se requiere el Dirección.</div>
+            <div ng-message="msPersonasDlgForm.direccion.$error.md-maxlength">El Dirección tiene un maximo de 255 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="msPersonasModelo.editopcion > 1">  
+            <div class="letraLabel">Dirección:</div>
+            <div class="letraTexto">{{msPersonasModelo.direccion}}</div>
+         </div>			 
+ </div>
+ 
+<!--  <div layout="row" layout-aling="center start">  -->
+<!--         <md-input-container class="md-block input-container-margen" ng-if="msPersonasModelo.editopcion < 2"> -->
+<!--             <label>Foto</label> -->
+<!--             <input type="text" md-maxlength="2" required name="tienefoto" ng-model="msPersonasModelo.tienefoto"> -->
+<!--             <div ng-messages="msPersonasDlgForm.tienefoto.$error"> -->
+<!--             <div ng-message="msPersonasDlgForm.tienefoto.$error.required">Se requiere el Foto.</div> -->
+<!--             <div ng-message="msPersonasDlgForm.tienefoto.$error.md-maxlength">El Foto tiene un maximo de 2 caracteres.</div> -->
+<!--             </div> -->
+<!--          </md-input-container> -->
+<!--          <div class="letraenvoltura" ng-if="msPersonasModelo.editopcion > 1">   -->
+<!--             <div class="letraLabel">Foto:</div> -->
+<!--             <div class="letraTexto">{{msPersonasModelo.tienefoto}}</div> -->
+<!--          </div>			  -->
+<!--  </div> -->
+ 
+
+</md-content>
+</div>
+<div>&nbsp;</div>
+
+</div> <!-- FIN -->
+
+<!-- DIALOGOS -->
+<!-- FIN DIALOGOS -->
+<!-- Footer -->
+<div ng-include="'paginas/pie.html'"></div>
+<!-- Fin Footer -->

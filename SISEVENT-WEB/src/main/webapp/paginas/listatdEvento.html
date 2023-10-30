@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html ng-app="MyApp">
+<head>
+<base href="/sisevent/" />
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+<meta name="viewport" content="width=device-width">
+
+<title>SISTEMA DE PREPARACIÓN DE EVENTOS</title>
+<link href="resources/css/angular-material.css" rel="stylesheet" type="text/css" />
+<link href="resources/css/md-data-table.css" rel="stylesheet" type="text/css" />
+<link href="resources/font/robotFont.css" rel="stylesheet" type="text/css" />
+<link href="resources/font/material-icons.css" rel="stylesheet" type="text/css" />
+
+<link href="resources/appcss/titulo.css" rel="stylesheet" type="text/css" />
+<link href="resources/appcss/menucontrler.css" rel="stylesheet" type="text/css" />
+<link href="resources/appcss/cuerpo.css" rel="stylesheet" type="text/css" />
+<link href="resources/appcss/pie.css" rel="stylesheet" type="text/css" />
+<link href="resources/appcss/tree.css" rel="stylesheet" type="text/css" />
+
+<script src="resources/js/angular.js"></script>
+<script src="resources/js/angular-animate.js"></script>
+<script src="resources/js/angular-aria.js"></script>
+<script src="resources/js/angular-material.js"></script>
+<script src="resources/js/angular-messages.js"></script>
+<script src="resources/js/md-data-table.js"></script>
+<script src="resources/js/angular-route.js"></script>
+
+<script src="resources/appjs/appini.js"></script>
+<script src="resources/appjs/menucontrol.js"></script>
+<script src="resources/appjs/titulo.js"></script>
+<script src="resources/appjs/listatdEvento.js"></script>
+
+<style type="text/css">
+</style>
+</head>
+<body>
+<!-- Formulario -->
+  <form name="tdEventoForm">
+<!-- PG1 INI -->
+<div layout="column" layout-align="center stretch">
+ <!-- Header -->
+  <div ng-include="'paginas/titulo.html'"></div>
+ <!-- FIN Header --> 
+ <!-- Body -->
+ <!-- PG2 INI -->
+<div layout="row" layout-align="start stretch" flex="none"> 
+  <!-- Menu -->
+  <div ng-include="'paginas/menu.html'" layout="column" layout-align="space-between stretch" 
+  class="menu-barra" ng-cloak md-colors="{background: 'primary-700'}">
+  </div>  
+  <!-- FIN Menu -->  
+   
+  <!-- Tabla -->
+  <div ng-view flex></div>
+  <!-- FIN Tabla -->  
+  <!-- Dialogo -->
+  <!-- FIN Dialogo -->
+   
+</div><!-- FIN PG2 INI --><!-- FIN Body -->
+</div><!-- FIN PG1 INI -->
+</form><!-- FIN Formulario --> 
+</body>
+</html>

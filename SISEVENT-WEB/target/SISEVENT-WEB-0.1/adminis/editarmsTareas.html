@@ -1,0 +1,82 @@
+<div flex="100" layout="column" layout-align="start stretch" class="margenForm" 
+data-ng-init="editmsTareas()">
+
+<div layout="row" layout-aling="space-between start">
+     <div flex="auto" ng-if="nuevo">        
+        <p class="md-title">Nueva Almacena Las Tareas Que Se Aplicarán En Las Derivaciones</p>
+     </div>
+     <div flex="auto" ng-if="!nuevo">        
+        <p class="md-title">{{msTareasModelo.XXX}}</p>
+     </div>
+     <div flex="auto" layout="row" layout-aling="end center" class="alingizquierda">
+     <md-button class="md-raised md-warn botontamanio" ng-click="cancelarMsTareas()">
+       <md-icon md-font-set="material-icons">undo</md-icon> 
+       <span ng-if="nuevo">Cancelar</span>
+       <span ng-if="!nuevo">Salir</span>   
+     </md-button>
+     <md-button class="md-raised botontamanio" ng-click="salvarMsTareas($event)" ng-if="msTareasModelo.editopcion==1">
+       <md-icon md-font-set="material-icons">save</md-icon> 
+       <span >Grabar</span>       
+     </md-button>
+     </div>
+</div>
+
+<div layout="column">
+<md-toolbar class="md-primary tolbarconrario" >
+    <div class="md-toolbar-tools" md-colors="{color: 'background-200'}">
+      <h2>Datos</h2>
+    </div>
+</md-toolbar>
+ <md-content md-whiteframe="1" class="overflowEsconder">
+ <div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="msTareasModelo.editopcion < 2" flex="auto">
+            <label>Text</label>
+            <input type="text" md-maxlength="150" required name="tarea" ng-model="msTareasModelo.tarea">
+            <div ng-messages="msTareasForm.tarea.$error">
+            <div ng-message="msTareasForm.tarea.$error.required">Se requiere el Text.</div>
+            <div ng-message="msTareasForm.tarea.$error.md-maxlength">El Text tiene un m&aacute;ximo de 150 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="msTareasModelo.editopcion > 1">  
+            <div class="letraLabel">Text:</div>
+            <div class="letraTexto">{{msTareasModelo.tarea}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="msTareasModelo.editopcion < 2" flex="auto">
+            <label>Text</label>
+            <textarea ng-model="msTareasModelo.descripcion" md-maxlength="500" rows="5" md-select-on-focus></textarea>
+            <div ng-messages="msTareasForm.descripcion.$error">
+            <div ng-message="msTareasForm.descripcion.$error.required">Se requiere el Text.</div>
+            <div ng-message="msTareasForm.descripcion.$error.md-maxlength">El Text tiene un m&aacute;ximo de 500 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="msTareasModelo.editopcion > 1">  
+            <div class="letraLabel">Text:</div>
+            <div class="letraTexto">{{msTareasModelo.descripcion}}</div>
+         </div>			 
+ </div><div layout="row" layout-aling="center start"> 
+        <md-input-container class="md-block input-container-margen" ng-if="msTareasModelo.editopcion < 2" flex="auto">
+            <label>Días</label>
+            <input type="text" md-maxlength="10" required name="tiempo" ng-model="msTareasModelo.tiempo">
+            <div ng-messages="msTareasForm.tiempo.$error">
+            <div ng-message="msTareasForm.tiempo.$error.required">Se requiere el Días.</div>
+            <div ng-message="msTareasForm.tiempo.$error.md-maxlength">El Días tiene un m&aacute;ximo de 10 caracteres.</div>
+            </div>
+         </md-input-container>
+         <div class="letraenvoltura" ng-if="msTareasModelo.editopcion > 1">  
+            <div class="letraLabel">Días:</div>
+            <div class="letraTexto">{{msTareasModelo.tiempo}}</div>
+         </div>			 
+ </div>
+</md-content>
+</div>
+<div>&nbsp;</div>
+
+</div> <!-- FIN -->
+
+<!-- DIALOGOS --> 
+
+<!-- FIN DIALOGOS -->
+<!-- Footer -->
+<div ng-include="'paginas/pie.html'"></div>
+<!-- Fin Footer -->

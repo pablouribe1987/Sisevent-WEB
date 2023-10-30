@@ -1,0 +1,32 @@
+<%
+   System.out.println("nt index.jsp is called...request="+request);
+%>
+<html>
+    <head>
+        <title>Hi HttpOnly</title>
+        <script type="text/javascript">
+          function ReadCookie(cookieName) 
+           {
+              var theCookie=""+document.cookie;
+              var ind=theCookie.indexOf(cookieName);
+              if (ind==-1 || cookieName=="") return ""; 
+                 var ind1=theCookie.indexOf(';',ind);
+              if (ind1==-1) ind1=theCookie.length; 
+                 return unescape(theCookie.substring(ind+cookieName.length+1,ind1));
+           }
+       </script>
+    </head>
+    <body bgcolor="maroon" text="white">
+            <center>
+            <h1>Hello CookieDemo "HttpOnly" !!!
+ 
+    <form name="getCookie">
+        <table border=0 cellpadding=3 cellspacing=3>
+         <tr><td>Cookie Name:&nbsp;</td><td><input name=t1 type=text size=20 value="JSESSIONID"></td></tr>
+             <tr><td><input name=b1 type=button value="Read Cookie Value" onClick="this.form.t2.value=ReadCookie(this.form.t1.value)">&nbsp;</td>    <td><input name=t2 type=text size=20 value=""></td></tr>
+           </table>
+        </form>
+       <b>NOTE: when you click on this button you should not be able to see the JSESSIONID cookie value in the textField if the http-only cookie is enabled.</b>
+   </center>
+    </body>
+</html>

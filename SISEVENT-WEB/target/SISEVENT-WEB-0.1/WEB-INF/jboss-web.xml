@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<jboss-web>
+	<security-domain flushOnSessionInvalidation="true">java:/jaas/siseventDominio</security-domain>
+	<context-root>/sisevent</context-root>	
+
+    <max-active-sessions>1500</max-active-sessions>
+    <passivation-config>
+      <use-session-passivation>true</use-session-passivation>
+      <passivation-min-idle-time>60</passivation-min-idle-time>
+      <passivation-max-idle-time>600</passivation-max-idle-time>
+   </passivation-config>
+    
+	<http-handler>
+        <class-name>pe.gob.mef.web.security.CandadoFixation</class-name>
+    </http-handler>
+</jboss-web>
